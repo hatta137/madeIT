@@ -27,7 +27,7 @@ struct NewModalView: View {
     }
     
 }
-
-#Preview {
-    NewModalView()
-}
+//
+//#Preview {
+//    NewModalView()
+//}

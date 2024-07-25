@@ -15,6 +15,12 @@ struct RessourceListView: View {
     @Query var customers: [Customer] // Abfrage für alle Kunden
     
     @State private var selectedCustomer: Customer? = nil
+    @State private var selectedFilter: FilterType = .alphabetical
+    
+    enum FilterType {
+        case alphabetical
+        case typeOfRessource
+    }
     
     var body: some View {
         NavigationStack {
@@ -28,10 +34,16 @@ struct RessourceListView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    
+                    Picker("Filter", selection: $selectedFilter) {
+                        Text("Alphabetisch").tag(FilterType.alphabetical)
+                        Text("Typ").tag(FilterType.typeOfRessource)
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
                 
                 List {
-                    ForEach(filteredRessources) { ressource in
+                    ForEach(filteredAndSortedRessources) { ressource in
                         NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
                             VStack(alignment: .leading) {
                                 Text(ressource.name)
@@ -57,11 +69,20 @@ struct RessourceListView: View {
         }
     }
     
-    var filteredRessources: [Ressource] {
+    var filteredAndSortedRessources: [Ressource] {
+        var filtered = ressources
+        
+        // Filter nach Kunden
         if let customer = selectedCustomer {
-            return ressources.filter { $0.customer?.id == customer.id }
-        } else {
-            return ressources
+            filtered = filtered.filter { $0.customer?.id == customer.id }
+        }
+        
+        // Sortieren nach ausgewähltem Filter
+        switch selectedFilter {
+        case .alphabetical:
+            return filtered.sorted { $0.name < $1.name }
+        case .typeOfRessource:
+            return filtered.sorted { $0.typeOfRessource.rawValue < $1.typeOfRessource.rawValue }
         }
     }
     

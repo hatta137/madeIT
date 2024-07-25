@@ -36,22 +36,28 @@ struct CustomerListView: View {
                         .pickerStyle(MenuPickerStyle())
                     }
                     
-                    
-                    List{
-                        ForEach(filteredCustomers) { customer in
-                            CustomerListCell(customer: customer)
-                                .onTapGesture {
-                                    viewModel.isShowingDetail = true
-                                    viewModel.selectedCustomer = customer
-                                }
+                    if filteredCustomers.isEmpty {
+                        Text("Keine Kunden angelegt")
+                            .foregroundColor(.gray)
+                            .padding()
+                    } else {
+                        List{
+                            ForEach(filteredCustomers) { customer in
+                                CustomerListCell(customer: customer)
+                                    .onTapGesture {
+                                        viewModel.isShowingDetail = true
+                                        viewModel.selectedCustomer = customer
+                                    }
+                            }
+                            .onDelete(perform: deleteCustomer(_:))
+                            
                         }
-                        .onDelete(perform: deleteCustomer(_:))
                         
                     }
-                    .navigationTitle("🗃️ Kunden")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .disabled(viewModel.isShowingDetail)
                 }
+                .navigationTitle("🗃️ Kunden")
+                .navigationBarTitleDisplayMode(.inline)
+                .disabled(viewModel.isShowingDetail)
                 
             }
             .blur(radius: viewModel.isShowingDetail ? 20 : 0)

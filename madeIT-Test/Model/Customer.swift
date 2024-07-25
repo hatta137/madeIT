@@ -10,9 +10,16 @@ class Customer: Identifiable {
     var email: String
     var industry: String
     var address: String
-//    var ressources: [Ressource] // Liste von Ressourcen
+    var ressources: [Ressource] = [] // Liste von Ressourcen
     
-    init(name: String = "", contactName: String = "", tel: String = "", email: String = "", industry: String = "", address: String = "") {
+    init(name: String = "", 
+         contactName: String = "",
+         tel: String = "",
+         email: String = "",
+         industry: String = "",
+         address: String = "") {
+        
+        
         self.id = UUID()
         self.name = name
         self.contactName = contactName
@@ -20,7 +27,6 @@ class Customer: Identifiable {
         self.email = email
         self.industry = industry
         self.address = address
-//        self.ressources = ressources
     }
 }
 

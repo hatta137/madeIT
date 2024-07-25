@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NewRessourceView: View {
     
@@ -24,14 +25,28 @@ struct NewRessourceView: View {
     @State private var url = ""
     @State private var userName = ""
     @State private var password = ""
+    @State private var customer: Customer? = nil
     
     @State private var isSaved = false
     
-    
+    @Query var customers: [Customer] // Abfrage für alle Kunden
     
     var body: some View {
         NavigationStack {
             Form {
+                Section("Kundeninformation") {
+                    List {
+                        Picker("Kunde", selection: $customer) {
+                            Text("Wähle einen Kunden").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
+                            ForEach(customers, id: \.self) { customer in
+                                Text(customer.name).tag(customer as Customer?)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                }
+                
+                
                 Section("Geräteinformationen") {
                     TextField("Name", text: $name)
                         .focused($focusedTextField, equals: .name)
@@ -51,6 +66,7 @@ struct NewRessourceView: View {
                         }
                         .pickerStyle(MenuPickerStyle()) // Stil des Pickers
                     }
+                    
                     
                 }
                 
@@ -94,7 +110,8 @@ struct NewRessourceView: View {
                         ip: ip,
                         url: url,
                         userName: userName,
-                        password: password)
+                        password: password,
+                        customer: customer)
                     
                     modelContext.insert(newRessource)
                     
@@ -107,6 +124,7 @@ struct NewRessourceView: View {
                     url = ""
                     userName = ""
                     password = ""
+                    customer = nil
                     
                     // Mark as saved and trigger navigation
                     isSaved = true

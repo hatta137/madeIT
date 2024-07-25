@@ -13,6 +13,7 @@ struct EditRessourceView: View {
     @Binding var ressource: Ressource
     @Binding var isShowingEditView: Bool
     @Environment(\.modelContext) private var modelContext
+    @Query var customers: [Customer] // Abfrage für alle Kunden
     @FocusState private var focusedTextField: FormTextField?
     enum FormTextField {
         case name, notes, ip, url, userName, password
@@ -21,6 +22,18 @@ struct EditRessourceView: View {
     var body: some View {
         NavigationStack {
             Form {
+                Section("Kundeninformation") {
+                    List {
+                        Picker("Kunde", selection: $ressource.customer) {
+                            Text("Wähle einen Kunden").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
+                            ForEach(customers, id: \.self) { customer in
+                                Text(customer.name).tag(customer as Customer?)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                }
+                
                 Section("Geräteinformationen") {
                     TextField("Name", text: $ressource.name)
                         .focused($focusedTextField, equals: .name)

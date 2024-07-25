@@ -19,8 +19,17 @@ class Ressource: Identifiable {
     var url: String
     var userName: String
     var password: String
+    var customer: Customer? // Optionaler Bezug auf Customer
     
-    init(name: String = "",typeOfRessource: TypeOfRessource = .undefined, notes: String = "", ip: String = "", url: String = "", userName: String = "", password: String = "") {
+    init(name: String = "",
+         typeOfRessource: TypeOfRessource = .undefined,
+         notes: String = "",
+         ip: String = "",
+         url: String = "",
+         userName: String = "",
+         password: String = "",
+         customer: Customer? = nil) {
+        
         self.id = UUID()
         self.name = name
         self.typeOfRessource = typeOfRessource
@@ -29,6 +38,7 @@ class Ressource: Identifiable {
         self.url = url
         self.userName = userName
         self.password = password
+        self.customer = customer
     }
 }
 

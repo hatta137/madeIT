@@ -20,6 +20,7 @@ struct CustomerDetailView: View {
         NavigationStack {
             VStack {
                 Text(customer.name)
+                    .multilineTextAlignment(.center)
                     .font(.title)
                     .fontWeight(.semibold)
                     .padding(.vertical, 20)
@@ -52,7 +53,7 @@ struct CustomerDetailView: View {
                 }
                 
             }
-            .frame(width: 300, height: 400)
+            .frame(width: 300, height: 500)
             .background(Color(.systemBackground))
             .cornerRadius(12)
             .shadow(radius: 40)

@@ -15,27 +15,35 @@ struct RessourceListView: View {
     
     var body: some View {
         NavigationStack {
-            List(ressources) { ressource in
-                
-                NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
-                    VStack(alignment: .leading) {
-                        Text(ressource.name)
-                            .font(.title2)
-                            .fontWeight(.medium)
-                        
-                        HStack {
-                            Text(ressource.ip)
-                                .font(.footnote)
-                                .fontWeight(.regular)
-                            Text(ressource.url)
-                                .font(.footnote)
-                                .fontWeight(.regular)
+            List {
+                ForEach(ressources) { ressource in
+                    NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
+                        VStack(alignment: .leading) {
+                            Text(ressource.name)
+                                .font(.title2)
+                                .fontWeight(.medium)
+                            
+                            HStack {
+                                Text(ressource.ip)
+                                    .font(.footnote)
+                                    .fontWeight(.regular)
+                                Text(ressource.url)
+                                    .font(.footnote)
+                                    .fontWeight(.regular)
+                            }
                         }
-                        
                     }
                 }
+                .onDelete(perform: deleteResource)
             }
             .navigationTitle("💻 Geräte")
+        }
+    }
+    
+    func deleteResource(at offsets: IndexSet) {
+        for index in offsets {
+            let ressource = ressources[index]
+            modelContext.delete(ressource)
         }
     }
 }
@@ -43,3 +51,4 @@ struct RessourceListView: View {
 #Preview {
     RessourceListView()
 }
+

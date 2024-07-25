@@ -71,6 +71,15 @@ struct NewCustomerView: View {
                     let newCustomer = Customer(name: name, contactName: contactname, tel: tel, email: email, industry: industry, address: address)
                     modelContext.insert(newCustomer)
                     
+                    // reset values
+                    
+                    name = ""
+                    industry = ""
+                    address = ""
+                    contactname = ""
+                    tel = ""
+                    email = ""
+                    
                     // Mark as saved and trigger navigation
                     isSaved = true
                     
@@ -81,13 +90,6 @@ struct NewCustomerView: View {
             NavigationLink(destination: CustomerListView(), isActive: $isSaved) {
                 EmptyView()
             }
-            
-//            NavigationLink(
-//                destination: CustomerListView(),
-//                isActive: $isSaved
-//            ) {
-//                EmptyView()
-//            }
         }
         
     }

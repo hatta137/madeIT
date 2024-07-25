@@ -18,6 +18,7 @@ struct NewRessourceView: View {
     }
     
     @State private var name = ""
+    @State private var typeOfRessource: TypeOfRessource = .undefined
     @State private var notes = ""
     @State private var ip = ""
     @State private var url = ""
@@ -25,6 +26,7 @@ struct NewRessourceView: View {
     @State private var password = ""
     
     @State private var isSaved = false
+    
     
     
     var body: some View {
@@ -40,7 +42,20 @@ struct NewRessourceView: View {
                         .focused($focusedTextField, equals: .notes)
                         .onSubmit { focusedTextField = .ip }
                         .submitLabel(.next)
+                    
+                    List {
+                        Picker("Typ", selection: $typeOfRessource) {
+                            ForEach(TypeOfRessource.allCases, id: \.self) { type in
+                                Text(type.rawValue).tag(type)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle()) // Stil des Pickers
+                    }
+                    
                 }
+                
+                
+                
                 Section("Netzwekinformationen") {
                     TextField("IP-Adresse", text: $ip)
                         .focused($focusedTextField, equals: .ip)
@@ -50,6 +65,8 @@ struct NewRessourceView: View {
                     TextField("URL", text: $url)
                         .focused($focusedTextField, equals: .url)
                         .onSubmit { focusedTextField = .userName }
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
                         .submitLabel(.next)
                     
                 }
@@ -72,6 +89,7 @@ struct NewRessourceView: View {
                 Button {
                     let newRessource = Ressource(
                         name: name,
+                        typeOfRessource: typeOfRessource,
                         notes: notes,
                         ip: ip,
                         url: url,
@@ -83,6 +101,7 @@ struct NewRessourceView: View {
                     // reset values
                     
                     name = ""
+                    typeOfRessource = .undefined
                     notes = ""
                     ip = ""
                     url = ""
@@ -100,7 +119,7 @@ struct NewRessourceView: View {
         }
     }
 }
-
-#Preview {
-    NewRessourceView()
-}
+//
+//#Preview {
+//    NewRessourceView()
+//}

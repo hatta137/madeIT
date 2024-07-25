@@ -19,6 +19,7 @@ struct RessourceDetailView: View {
             VStack(alignment: .leading, spacing: 5) {
                 
                 ContactInfo(image: "server.rack",           info: ressource.name)
+                ContactInfo(image: "xserve",                info: ressource.typeOfRessource.rawValue)
                 ContactInfo(image: "list.bullet.clipboard", info: ressource.notes)
                 ContactInfo(image: "network",               info: ressource.ip)
                 ContactInfo(image: "network",               info: ressource.url)

@@ -23,7 +23,7 @@ struct RessourceListView: View {
                                 .font(.title2)
                                 .fontWeight(.medium)
                             
-                            HStack {
+                            HStack(alignment: .center) {
                                 Text(ressource.ip)
                                     .font(.footnote)
                                     .fontWeight(.regular)

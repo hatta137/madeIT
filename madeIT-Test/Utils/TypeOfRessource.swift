@@ -7,15 +7,19 @@
 
 import Foundation
 
-enum TypeOfRessource {
-    case server
-    case pc
-    case storage
-    case vm
-    case router
-    case firewall
-    case networkSwitch
-    case usv
-    case website
-    case license
+enum TypeOfRessource: String, Codable, Identifiable, CaseIterable {
+    
+    var id: String { rawValue }
+    
+    case undefined = "undefiniert"
+    case server = "Server"
+    case pc = "PC"
+    case storage = "Storage"
+    case vm = "VM"
+    case router = "Router"
+    case firewall = "Firewall"
+    case networkSwitch = "Network Switch"
+    case usv = "USV"
+    case website = "Website"
+    case license = "Lizenz"
 }

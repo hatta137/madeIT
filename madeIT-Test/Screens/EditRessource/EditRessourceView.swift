@@ -31,6 +31,15 @@ struct EditRessourceView: View {
                         .focused($focusedTextField, equals: .notes)
                         .onSubmit { focusedTextField = .ip }
                         .submitLabel(.next)
+                    
+                    List {
+                        Picker("Typ", selection: $ressource.typeOfRessource) {
+                            ForEach(TypeOfRessource.allCases, id: \.self) { type in
+                                Text(type.rawValue).tag(type)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle()) // Stil des Pickers
+                    }
                 }
                 Section("Netzwekinformationen") {
                     TextField("IP-Adresse", text: $ressource.ip)

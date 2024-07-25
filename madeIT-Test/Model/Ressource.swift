@@ -13,17 +13,17 @@ import SwiftData
 class Ressource: Identifiable {
     var id: UUID
     var name: String
-    // var typeOfRessource: TypeOfRessource
+    var typeOfRessource: TypeOfRessource
     var notes: String
     var ip: String
     var url: String
     var userName: String
     var password: String
     
-    init(name: String = "", notes: String = "", ip: String = "", url: String = "", userName: String = "", password: String = "") {
+    init(name: String = "",typeOfRessource: TypeOfRessource = .undefined, notes: String = "", ip: String = "", url: String = "", userName: String = "", password: String = "") {
         self.id = UUID()
         self.name = name
-//        self.typeOfRessource = typeOfRessource
+        self.typeOfRessource = typeOfRessource
         self.notes = notes
         self.ip = ip
         self.url = url

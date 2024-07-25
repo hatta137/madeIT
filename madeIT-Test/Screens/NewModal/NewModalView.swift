@@ -22,6 +22,7 @@ struct NewModalView: View {
                 }
             }
             .navigationTitle("🆕 Neu anlegen")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

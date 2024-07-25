@@ -36,7 +36,7 @@ struct CustomerListCell: View {
                     
                     Text(customer.contactName)
                         .font(.footnote)
-                    Text(customer.industry)
+                    Text(customer.industry.rawValue)
                         .font(.footnote)
                     Text(customer.tel)
                         .font(.footnote)

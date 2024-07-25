@@ -17,7 +17,7 @@ struct NewCustomerView: View {
     @FocusState private var focusedTextField: FormTextField?
     
     @State private var name = ""
-    @State private var industry = ""
+    @State private var industry: Industry = .undefined
     @State private var address = ""
     @State private var contactname = ""
     @State private var tel = ""
@@ -36,13 +36,18 @@ struct NewCustomerView: View {
                 Section("Kundeninformationen") {
                     TextField("Firmennamen", text: $name)
                         .focused($focusedTextField, equals: .name)
-                        .onSubmit { focusedTextField = .industry }
-                        .submitLabel(.next)
-                    
-                    TextField("Branche", text: $industry)
-                        .focused($focusedTextField, equals: .industry)
                         .onSubmit { focusedTextField = .address }
                         .submitLabel(.next)
+                    
+                    
+                    List {
+                        Picker("Branche", selection: $industry) {
+                            ForEach(Industry.allCases, id: \.self) { type in
+                                Text(type.rawValue).tag(type)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle()) // Stil des Pickers
+                    }
                     
                     TextField("Addresse", text: $address)
                         .focused($focusedTextField, equals: .address)
@@ -77,7 +82,7 @@ struct NewCustomerView: View {
                     // reset values
                     
                     name = ""
-                    industry = ""
+                    industry = .undefined
                     address = ""
                     contactname = ""
                     tel = ""
@@ -97,6 +102,6 @@ struct NewCustomerView: View {
     }
 }
 
-#Preview {
-    NewCustomerView()
-}
+//#Preview {
+//    NewCustomerView()
+//}

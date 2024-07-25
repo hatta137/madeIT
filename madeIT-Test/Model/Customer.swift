@@ -8,7 +8,7 @@ class Customer: Identifiable {
     var contactName: String
     var tel: String
     var email: String
-    var industry: String
+    var industry: Industry
     var address: String
     var ressources: [Ressource] = [] // Liste von Ressourcen
     
@@ -16,7 +16,7 @@ class Customer: Identifiable {
          contactName: String = "",
          tel: String = "",
          email: String = "",
-         industry: String = "",
+         industry: Industry = .undefined,
          address: String = "") {
         
         

@@ -24,13 +24,17 @@ struct EditCustomerView: View {
             Section("Kundeninformationen") {
                 TextField("Firmennamen", text: $customer.name)
                     .focused($focusedTextField, equals: .name)
-                    .onSubmit { focusedTextField = .industry }
-                    .submitLabel(.next)
-                
-                TextField("Branche", text: $customer.industry)
-                    .focused($focusedTextField, equals: .industry)
                     .onSubmit { focusedTextField = .address }
                     .submitLabel(.next)
+
+                List {
+                    Picker("Branche", selection: $customer.industry) {
+                        ForEach(Industry.allCases, id: \.self) { type in
+                            Text(type.rawValue).tag(type)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle()) // Stil des Pickers
+                }
                 
                 TextField("Addresse", text: $customer.address)
                     .focused($focusedTextField, equals: .address)

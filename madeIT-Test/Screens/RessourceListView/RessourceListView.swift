@@ -19,39 +19,38 @@ struct RessourceListView: View {
     var body: some View {
         NavigationStack {
             
-            
-            VStack(alignment: .leading) {
-                Picker("Kunde", selection: $selectedCustomer) {
-                    Text("Alle Geräte anzeigen").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
-                    ForEach(customers, id: \.self) { customer in
-                        Text(customer.name).tag(customer as Customer?)
+            Form {
+                Section {
+                    Picker("Kunde", selection: $selectedCustomer) {
+                        Text("Alle Geräte anzeigen").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
+                        ForEach(customers, id: \.self) { customer in
+                            Text(customer.name).tag(customer as Customer?)
+                        }
                     }
+                    .pickerStyle(MenuPickerStyle())
                 }
-                .pickerStyle(MenuPickerStyle())
-                .padding(.top, 40)
-            }
-            
-            
-            List {
-                ForEach(filteredRessources) { ressource in
-                    NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
-                        VStack(alignment: .leading) {
-                            Text(ressource.name)
-                                .font(.title2)
-                                .fontWeight(.medium)
-                            
-                            HStack(alignment: .center) {
-                                Text(ressource.ip)
-                                    .font(.footnote)
-                                    .fontWeight(.regular)
-                                Text(ressource.url)
-                                    .font(.footnote)
-                                    .fontWeight(.regular)
+                
+                List {
+                    ForEach(filteredRessources) { ressource in
+                        NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
+                            VStack(alignment: .leading) {
+                                Text(ressource.name)
+                                    .font(.title2)
+                                    .fontWeight(.medium)
+                                
+                                HStack(alignment: .center) {
+                                    Text(ressource.ip)
+                                        .font(.footnote)
+                                        .fontWeight(.regular)
+                                    Text(ressource.url)
+                                        .font(.footnote)
+                                        .fontWeight(.regular)
+                                }
                             }
                         }
                     }
-                }
-                .onDelete(perform: deleteResource)
+                    .onDelete(perform: deleteResource)
+                } 
             }
             .navigationTitle("💻 Geräte")
             .navigationBarTitleDisplayMode(.inline)

@@ -16,23 +16,43 @@ struct CustomerListView: View {
     
     @StateObject var viewModel = CustomerListViewModel()
     
+    @State private var selectedFilter: FilterType = .alphabetical
+    
+    enum FilterType {
+        case alphabetical
+        case industry
+    }
     
     var body: some View {
         ZStack {
             NavigationStack {
-                List{
-                    ForEach(customers) { customer in
-                        CustomerListCell(customer: customer)
-                            .onTapGesture {
-                                viewModel.isShowingDetail = true
-                                viewModel.selectedCustomer = customer
-                            }
+                
+                Form {
+                    Section{
+                        Picker("Filter", selection: $selectedFilter) {
+                            Text("Alphabetisch").tag(FilterType.alphabetical)
+                            Text("Branche").tag(FilterType.industry)
+                        }
+                        .pickerStyle(MenuPickerStyle())
                     }
-                    .onDelete(perform: deleteCustomer(_:))
                     
+                    
+                    List{
+                        ForEach(filteredCustomers) { customer in
+                            CustomerListCell(customer: customer)
+                                .onTapGesture {
+                                    viewModel.isShowingDetail = true
+                                    viewModel.selectedCustomer = customer
+                                }
+                        }
+                        .onDelete(perform: deleteCustomer(_:))
+                        
+                    }
+                    .navigationTitle("🗃️ Kunden")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .disabled(viewModel.isShowingDetail)
                 }
-                .navigationTitle("🗃️ Kunden")
-                .disabled(viewModel.isShowingDetail)
+                
             }
             .blur(radius: viewModel.isShowingDetail ? 20 : 0)
             
@@ -44,6 +64,14 @@ struct CustomerListView: View {
         
     }
     
+    var filteredCustomers: [Customer] {
+        switch selectedFilter {
+        case .alphabetical:
+            return customers.sorted { $0.name < $1.name }
+        case .industry:
+            return customers.sorted { $0.industry.rawValue < $1.industry.rawValue }
+        }
+    }
     
     func deleteCustomer(_ indexSet: IndexSet) {
         for index in indexSet {

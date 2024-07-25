@@ -36,7 +36,7 @@ struct CustomerDetailView: View {
                     ContactInfo(image: "person.crop.circle", info: customer.contactName)
                     ContactInfo(image: "phone",              info: customer.tel)
                     ContactInfo(image: "mail",               info: customer.email)
-                    ContactInfo(image: "wrench.adjustable",  info: customer.industry)
+                    ContactInfo(image: "wrench.adjustable",  info: customer.industry.rawValue)
                     
                     Text(customer.address)
                         .multilineTextAlignment(.center)
@@ -47,7 +47,7 @@ struct CustomerDetailView: View {
                 Button("Bearbeiten") {
                     isShowingEditView = true
                 }
-                .padding(.bottom, 40)
+                .padding(.bottom, 20)
                 .sheet(isPresented: $isShowingEditView) {
                     EditCustomerView(customer: $customer, isShowingEditView: $isShowingEditView)
                 }

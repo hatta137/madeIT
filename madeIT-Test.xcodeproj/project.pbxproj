@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3EDD6AB62C5261BE002A4D0A /* RessourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */; };
 		B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE3182C5291AF0019B844 /* EditRessourceView.swift */; };
+		B18EE31B2C52DC610019B844 /* Industry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE31A2C52DC610019B844 /* Industry.swift */; };
 		B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC002C216DA700075A5D /* madeIT_TestApp.swift */; };
 		B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC022C216DA700075A5D /* MadeItTab.swift */; };
 		B191FC052C216DA800075A5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B191FC042C216DA800075A5D /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessourceDetailView.swift; sourceTree = "<group>"; };
 		B18EE3182C5291AF0019B844 /* EditRessourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRessourceView.swift; sourceTree = "<group>"; };
+		B18EE31A2C52DC610019B844 /* Industry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Industry.swift; sourceTree = "<group>"; };
 		B191FBFD2C216DA700075A5D /* madeIT-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "madeIT-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B191FC002C216DA700075A5D /* madeIT_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = madeIT_TestApp.swift; sourceTree = "<group>"; };
 		B191FC022C216DA700075A5D /* MadeItTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeItTab.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B191FC212C217D7F00075A5D /* TypeOfRessource.swift */,
+				B18EE31A2C52DC610019B844 /* Industry.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */,
 				B1D3004D2C511B0F00489938 /* CustomModifiers.swift in Sources */,
 				B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */,
+				B18EE31B2C52DC610019B844 /* Industry.swift in Sources */,
 				B1D3004F2C51206C00489938 /* NewCustomerView.swift in Sources */,
 				B191FC2E2C21D63700075A5D /* SplashScreenView.swift in Sources */,
 				B191FC192C21731100075A5D /* Customer.swift in Sources */,

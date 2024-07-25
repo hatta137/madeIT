@@ -20,6 +20,6 @@ struct RessourceDetailView: View {
     }
 }
 
-#Preview {
-    RessourceDetailView(ressource: MockDataResssource.sampleRessource)
-}
+//#Preview {
+//    RessourceDetailView(ressource: MockDataResssource.sampleRessource)
+//}

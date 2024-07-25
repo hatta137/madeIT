@@ -13,7 +13,7 @@ struct NewCustomerView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var viewModel = CustomerListViewModel()
+ 
     @FocusState private var focusedTextField: FormTextField?
     
     @State private var name = ""

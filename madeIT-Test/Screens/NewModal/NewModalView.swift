@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewModal: View {
+struct NewModalView: View {
     
     
     
@@ -28,5 +28,5 @@ struct NewModal: View {
 }
 
 #Preview {
-    NewModal()
+    NewModalView()
 }

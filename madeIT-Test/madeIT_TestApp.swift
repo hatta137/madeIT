@@ -13,6 +13,6 @@ struct madeIT_TestApp: App {
         WindowGroup {
             MadeItTab()
         }
-        .modelContainer(for: Customer.self)
+        .modelContainer(for: [Customer.self, Ressource.self])
     }
 }

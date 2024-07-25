@@ -17,7 +17,7 @@ struct MadeItTab: View {
                 .tabItem { Label("Kunden", systemImage: "folder.badge.person.crop") }
   
             
-            NewModal()
+            NewModalView()
                 .tabItem { Label("Neu", systemImage: "plus") }
               
             

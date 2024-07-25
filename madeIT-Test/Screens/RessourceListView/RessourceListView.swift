@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RessourceListView: View {
+    
+    @Environment(\.modelContext) var modelContext
+    @Query var ressources: [Ressource]
+    
     var body: some View {
         NavigationStack {
-            List(MockDataResssource.sampleRessources) { ressource in
+            List(ressources) { ressource in
                 
                 NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
                     VStack(alignment: .leading) {

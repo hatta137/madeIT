@@ -46,7 +46,7 @@ struct CustomerDetailView: View {
                 Button("Bearbeiten") {
                     isShowingEditView = true
                 }
-                .padding()
+                .padding(.bottom, 40)
                 .sheet(isPresented: $isShowingEditView) {
                     EditCustomerView(customer: $customer, isShowingEditView: $isShowingEditView)
                 }
@@ -89,6 +89,6 @@ struct ContactInfo: View {
 }
 
 
-#Preview {
-    CustomerDetailView(customer: Customer(name: "HL Web Dev", contactName: "Hendrik Lendeckel", tel: "015140244595", email: "hendrik@lendeckel.de", industry: "Webdevelopment", address: "Kurt-Beate-Straße 9, 99086 Erfurt"), isShowingDetail: .constant(true))
-}
+//#Preview {
+//    CustomerDetailView(customer: Customer(name: "HL Web Dev", contactName: "Hendrik Lendeckel", tel: "015140244595", email: "hendrik@lendeckel.de", industry: "Webdevelopment", address: "Kurt-Beate-Straße 9, 99086 Erfurt"), isShowingDetail: .constant(true))
+//}

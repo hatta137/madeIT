@@ -11,14 +11,14 @@ import SwiftData
 
 @Model
 class Ressource: Identifiable {
-    let id: UUID
-    let name: String
-//    let typeOfRessource: TypeOfRessource
-    let notes: String
-    let ip: String
-    let url: String
-    let userName: String
-    let password: String
+    var id: UUID
+    var name: String
+    // var typeOfRessource: TypeOfRessource
+    var notes: String
+    var ip: String
+    var url: String
+    var userName: String
+    var password: String
     
     init(name: String = "", notes: String = "", ip: String = "", url: String = "", userName: String = "", password: String = "") {
         self.id = UUID()

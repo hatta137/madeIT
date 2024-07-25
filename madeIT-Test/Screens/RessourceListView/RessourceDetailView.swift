@@ -10,6 +10,7 @@ import SwiftUI
 struct RessourceDetailView: View {
     
     @State var ressource: Ressource
+    @State private var isShowingEditView = false
     
     var body: some View {
         VStack {
@@ -24,7 +25,15 @@ struct RessourceDetailView: View {
                 ContactInfo(image: "person",                info: ressource.userName)
                 ContactInfo(image: "key",                   info: ressource.password)
                 
-                
+            }
+            .padding(.bottom, 40)
+            
+            Button("Bearbeiten") {
+                isShowingEditView = true
+            }
+            .padding(.bottom, 40)
+            .sheet(isPresented: $isShowingEditView) {
+                EditRessourceView(ressource: $ressource, isShowingEditView: $isShowingEditView)
             }
         }
         .navigationTitle(ressource.name)
@@ -49,13 +58,16 @@ struct ReesourceInfo: View {
     }
 }
 
-
-#Preview {
-    RessourceDetailView(ressource: Ressource(
-        name: "HyperV",
-        notes: "Ich stehe im Keller",
-        ip: "10.10.10.1",
-        url: "hyperv.local",
-        userName: "admin",
-        password: "admin1234"))
-}
+//
+//#Preview {
+//    let ressource = Ressource(
+//        name: "HyperV",
+//        notes: "Ich stehe im Keller",
+//        ip: "10.10.10.1",
+//        url: "hyperv.local",
+//        userName: "admin",
+//        password: "admin1234"
+//    )
+//    return RessourceDetailView(ressource: ressource)
+//        .modelContainer(for: [Ressource.self])
+//}

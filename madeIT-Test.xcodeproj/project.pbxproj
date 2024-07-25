@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3EDD6AB62C5261BE002A4D0A /* RessourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */; };
+		B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE3182C5291AF0019B844 /* EditRessourceView.swift */; };
 		B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC002C216DA700075A5D /* madeIT_TestApp.swift */; };
 		B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC022C216DA700075A5D /* MadeItTab.swift */; };
 		B191FC052C216DA800075A5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B191FC042C216DA800075A5D /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessourceDetailView.swift; sourceTree = "<group>"; };
+		B18EE3182C5291AF0019B844 /* EditRessourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRessourceView.swift; sourceTree = "<group>"; };
 		B191FBFD2C216DA700075A5D /* madeIT-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "madeIT-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B191FC002C216DA700075A5D /* madeIT_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = madeIT_TestApp.swift; sourceTree = "<group>"; };
 		B191FC022C216DA700075A5D /* MadeItTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeItTab.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B18EE3172C5291980019B844 /* EditRessource */ = {
+			isa = PBXGroup;
+			children = (
+				B18EE3182C5291AF0019B844 /* EditRessourceView.swift */,
+			);
+			path = EditRessource;
+			sourceTree = "<group>";
+		};
 		B191FBF42C216DA700075A5D = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,7 @@
 		B191FC282C21869800075A5D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B18EE3172C5291980019B844 /* EditRessource */,
 				B1D300542C5138E200489938 /* EditCustomer */,
 				B1D300492C51163100489938 /* NewCustomer */,
 				B1D300482C51161900489938 /* NewRessource */,
@@ -286,6 +297,7 @@
 				B1D300512C51231F00489938 /* NewRessourceView.swift in Sources */,
 				B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */,
 				B1D3004D2C511B0F00489938 /* CustomModifiers.swift in Sources */,
+				B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */,
 				B1D3004F2C51206C00489938 /* NewCustomerView.swift in Sources */,
 				B191FC2E2C21D63700075A5D /* SplashScreenView.swift in Sources */,
 				B191FC192C21731100075A5D /* Customer.swift in Sources */,

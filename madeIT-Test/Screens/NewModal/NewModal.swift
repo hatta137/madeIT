@@ -10,6 +10,7 @@ import SwiftUI
 struct NewModal: View {
     
     
+    
     var body: some View {
         NavigationStack {
             List {

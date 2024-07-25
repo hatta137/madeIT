@@ -11,6 +11,7 @@ import SwiftData
 struct NewCustomerView: View {
     
     @Environment(\.modelContext) var modelContext
+    @Environment(\.dismiss) var dismiss
     
     @StateObject var viewModel = CustomerListViewModel()
     @FocusState private var focusedTextField: FormTextField?
@@ -23,6 +24,7 @@ struct NewCustomerView: View {
     @State private var email = ""
     
     @State private var isSaved = false
+
     
     enum FormTextField {
         case name, industry, address, contactname, tel, email
@@ -69,6 +71,7 @@ struct NewCustomerView: View {
                 }
                 Button {
                     let newCustomer = Customer(name: name, contactName: contactname, tel: tel, email: email, industry: industry, address: address)
+                    
                     modelContext.insert(newCustomer)
                     
                     // reset values
@@ -79,19 +82,18 @@ struct NewCustomerView: View {
                     contactname = ""
                     tel = ""
                     email = ""
+
+                    
                     
                     // Mark as saved and trigger navigation
                     isSaved = true
+                    dismiss()
                     
                 } label: {
                     Text("Save Changes")
                 }
             }
-            NavigationLink(destination: CustomerListView(), isActive: $isSaved) {
-                EmptyView()
-            }
         }
-        
     }
 }
 

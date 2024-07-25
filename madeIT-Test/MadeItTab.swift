@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct MadeItTab: View {
+
+    
     var body: some View {
         TabView {
+            
             CustomerListView()
                 .tabItem { Label("Kunden", systemImage: "folder.badge.person.crop") }
+  
+            
             NewModal()
                 .tabItem { Label("Neu", systemImage: "plus") }
+              
+            
             RessourceListView()
                 .tabItem { Label("Geräte", systemImage: "server.rack") }
+               
         }
     }
 }

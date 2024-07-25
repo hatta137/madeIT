@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EDD6AB62C5261BE002A4D0A /* RessourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */; };
 		B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC002C216DA700075A5D /* madeIT_TestApp.swift */; };
 		B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC022C216DA700075A5D /* MadeItTab.swift */; };
 		B191FC052C216DA800075A5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B191FC042C216DA800075A5D /* Assets.xcassets */; };
@@ -18,7 +19,6 @@
 		B191FC1D2C217BDE00075A5D /* CustomerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC1C2C217BDE00075A5D /* CustomerListCell.swift */; };
 		B191FC202C217CAF00075A5D /* Ressource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC1F2C217CAF00075A5D /* Ressource.swift */; };
 		B191FC222C217D7F00075A5D /* TypeOfRessource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC212C217D7F00075A5D /* TypeOfRessource.swift */; };
-		B191FC242C2182CE00075A5D /* RessourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC232C2182CE00075A5D /* RessourceDetailView.swift */; };
 		B191FC2E2C21D63700075A5D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC2D2C21D63700075A5D /* SplashScreenView.swift */; };
 		B1D300432C50F42D00489938 /* CustomerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D300422C50F42D00489938 /* CustomerDetailView.swift */; };
 		B1D300452C50F59800489938 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D300442C50F59800489938 /* XDismissButton.swift */; };
@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessourceDetailView.swift; sourceTree = "<group>"; };
 		B191FBFD2C216DA700075A5D /* madeIT-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "madeIT-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B191FC002C216DA700075A5D /* madeIT_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = madeIT_TestApp.swift; sourceTree = "<group>"; };
 		B191FC022C216DA700075A5D /* MadeItTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeItTab.swift; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		B191FC1C2C217BDE00075A5D /* CustomerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerListCell.swift; sourceTree = "<group>"; };
 		B191FC1F2C217CAF00075A5D /* Ressource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ressource.swift; sourceTree = "<group>"; };
 		B191FC212C217D7F00075A5D /* TypeOfRessource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeOfRessource.swift; sourceTree = "<group>"; };
-		B191FC232C2182CE00075A5D /* RessourceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessourceDetailView.swift; sourceTree = "<group>"; };
 		B191FC2D2C21D63700075A5D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		B1D300422C50F42D00489938 /* CustomerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailView.swift; sourceTree = "<group>"; };
 		B1D300442C50F59800489938 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 				B191FC022C216DA700075A5D /* MadeItTab.swift */,
 				B191FC042C216DA800075A5D /* Assets.xcassets */,
 				B191FC062C216DA800075A5D /* Preview Content */,
-				B191FC232C2182CE00075A5D /* RessourceDetailView.swift */,
 				B191FC2D2C21D63700075A5D /* SplashScreenView.swift */,
 			);
 			path = "madeIT-Test";
@@ -161,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				B191FC142C216FCC00075A5D /* RessourceListView.swift */,
+				3EDD6AB52C5261BE002A4D0A /* RessourceDetailView.swift */,
 			);
 			path = RessourceListView;
 			sourceTree = "<group>";
@@ -280,8 +280,8 @@
 				B191FC152C216FCC00075A5D /* RessourceListView.swift in Sources */,
 				B1D300562C5138F600489938 /* EditCustomerView.swift in Sources */,
 				B1D300452C50F59800489938 /* XDismissButton.swift in Sources */,
-				B191FC242C2182CE00075A5D /* RessourceDetailView.swift in Sources */,
 				B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */,
+				3EDD6AB62C5261BE002A4D0A /* RessourceDetailView.swift in Sources */,
 				B1D300532C51259800489938 /* NewCustomerViewModel.swift in Sources */,
 				B1D300512C51231F00489938 /* NewRessourceView.swift in Sources */,
 				B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */,

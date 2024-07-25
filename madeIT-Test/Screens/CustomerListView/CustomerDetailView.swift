@@ -27,7 +27,7 @@ struct CustomerDetailView: View {
                 
                 HStack(spacing: 20) {
                     Image(systemName: "server.rack")
-    //                Text("\(customer.ressources.count)")
+                    Text("\(customer.ressources.count)")
                 }
                 .padding(.bottom, 30)
                 

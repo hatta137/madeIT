@@ -12,11 +12,28 @@ struct RessourceListView: View {
     
     @Environment(\.modelContext) var modelContext
     @Query var ressources: [Ressource]
+    @Query var customers: [Customer] // Abfrage für alle Kunden
+    
+    @State private var selectedCustomer: Customer? = nil
     
     var body: some View {
         NavigationStack {
+            
+            
+            VStack(alignment: .leading) {
+                Picker("Kunde", selection: $selectedCustomer) {
+                    Text("Alle Geräte anzeigen").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
+                    ForEach(customers, id: \.self) { customer in
+                        Text(customer.name).tag(customer as Customer?)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .padding(.top, 40)
+            }
+            
+            
             List {
-                ForEach(ressources) { ressource in
+                ForEach(filteredRessources) { ressource in
                     NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
                         VStack(alignment: .leading) {
                             Text(ressource.name)
@@ -37,6 +54,15 @@ struct RessourceListView: View {
                 .onDelete(perform: deleteResource)
             }
             .navigationTitle("💻 Geräte")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    
+    var filteredRessources: [Ressource] {
+        if let customer = selectedCustomer {
+            return ressources.filter { $0.customer?.id == customer.id }
+        } else {
+            return ressources
         }
     }
     
@@ -47,8 +73,8 @@ struct RessourceListView: View {
         }
     }
 }
-
-#Preview {
-    RessourceListView()
-}
+//
+//#Preview {
+//    RessourceListView()
+//}
 

@@ -15,7 +15,7 @@ struct CustomerListView: View {
     @Query var customers: [Customer]
     
     @StateObject var viewModel = CustomerListViewModel()
-
+    
     
     var body: some View {
         ZStack {
@@ -48,11 +48,16 @@ struct CustomerListView: View {
     func deleteCustomer(_ indexSet: IndexSet) {
         for index in indexSet {
             let customer = customers[index]
+            
+            for ressource in customer.ressources {
+                modelContext.delete(ressource)
+            }
+            
             modelContext.delete(customer)
         }
     }
 }
-
-#Preview {
-    CustomerListView()
-}
+//
+//#Preview {
+//    CustomerListView()
+//}

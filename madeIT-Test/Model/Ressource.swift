@@ -17,18 +17,18 @@ class Ressource: Identifiable {
     var notes: String
     var ip: String
     var url: String
-    var userName: String
-    var password: String
     var customer: Customer? // Optionaler Bezug auf Customer
-    
+    var userName: String
+    private var encryptedPassword: String
+
     init(name: String = "",
          typeOfRessource: TypeOfRessource = .undefined,
          notes: String = "",
          ip: String = "",
          url: String = "",
+         customer: Customer? = nil,
          userName: String = "",
-         password: String = "",
-         customer: Customer? = nil) {
+         password: String = "") {
         
         self.id = UUID()
         self.name = name
@@ -36,11 +36,20 @@ class Ressource: Identifiable {
         self.notes = notes
         self.ip = ip
         self.url = url
-        self.userName = userName
-        self.password = password
         self.customer = customer
+        self.userName = userName
+        self.encryptedPassword = CryptoHelper.encrypt(password) ?? ""
+    }
+    
+    func getPassword() -> String? {
+        return CryptoHelper.decrypt(encryptedPassword)
+    }
+    
+    func setPassword(_ newPassword: String) {
+        encryptedPassword = CryptoHelper.encrypt(newPassword) ?? ""
     }
 }
+
 
 //struct MockDataResssource {
 //    static let sampleRessource  = Ressource(id: UUID(), name: "Hyper V", typeOfRessource: .server, description: "Host System für Virtualisierung", ip: "10.10.1.100", url: "hyperv.local", userName: "administrator", password: "admin123")

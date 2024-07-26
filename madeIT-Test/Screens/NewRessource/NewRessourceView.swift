@@ -109,9 +109,10 @@ struct NewRessourceView: View {
                         notes: notes,
                         ip: ip,
                         url: url,
+                        customer: customer,
                         userName: userName,
-                        password: password,
-                        customer: customer)
+                        password: password)
+                    print(password)
                     
                     modelContext.insert(newRessource)
                     

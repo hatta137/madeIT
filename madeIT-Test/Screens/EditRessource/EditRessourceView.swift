@@ -19,6 +19,8 @@ struct EditRessourceView: View {
         case name, notes, ip, url, userName, password
     }
     
+    @State private var clearPassword: String = ""
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -66,6 +68,7 @@ struct EditRessourceView: View {
                         .submitLabel(.next)
                     
                 }
+                
                 Section("Zugangsinformationen") {
                     TextField("Username", text: $ressource.userName)
                         .focused($focusedTextField, equals: .userName)
@@ -74,12 +77,18 @@ struct EditRessourceView: View {
                         .autocorrectionDisabled()
                         .submitLabel(.next)
                     
-                    TextField("Password", text: $ressource.password)
+                    TextField("Password", text: $clearPassword)
                         .focused($focusedTextField, equals: .password)
                         .onSubmit { focusedTextField = nil }
                         .autocapitalization(.none)
                         .autocorrectionDisabled()
                         .submitLabel(.continue)
+                        .onAppear {
+                            clearPassword = ressource.getPassword() ?? "not found"
+                        }
+                        .onChange(of: clearPassword) { newValue in
+                            ressource.setPassword(newValue)
+                        }
                     
                 }
                 Button {

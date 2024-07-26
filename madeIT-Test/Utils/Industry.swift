@@ -16,4 +16,9 @@ enum Industry: String, Codable, Identifiable, CaseIterable {
     case trade = "Handel"
     case farming = "Landwirtschaft"
     case crafts = "Handwerk"
+    case industry = "Industrie"
+    case business = "Gewerbe"
+    case healthcare = "Medizin"
+    case music = "Musik"
+    case government = "Staat"
 }

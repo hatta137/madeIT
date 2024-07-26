@@ -25,7 +25,7 @@ struct RessourceDetailView: View {
                 ContactInfo(image: "network",               info: ressource.ip)
                 ContactInfo(image: "network",               info: ressource.url)
                 ContactInfo(image: "person",                info: ressource.userName)
-                ContactInfo(image: "key",                   info: ressource.password)
+                ContactInfo(image: "key",                   info: ressource.getPassword() ?? "")
                 
             }
             .padding(.bottom, 40)

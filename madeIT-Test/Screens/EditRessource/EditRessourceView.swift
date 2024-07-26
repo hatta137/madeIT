@@ -20,6 +20,7 @@ struct EditRessourceView: View {
     }
     
     @State private var clearPassword: String = ""
+    @State private var isPasswordVisible: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -77,18 +78,25 @@ struct EditRessourceView: View {
                         .autocorrectionDisabled()
                         .submitLabel(.next)
                     
-                    TextField("Password", text: $clearPassword)
-                        .focused($focusedTextField, equals: .password)
-                        .onSubmit { focusedTextField = nil }
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .submitLabel(.continue)
-                        .onAppear {
-                            clearPassword = ressource.getPassword() ?? "not found"
+                    ZStack(alignment: .trailing) {
+                        if isPasswordVisible {
+                            TextField("Password", text: $clearPassword)
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
+                        } else {
+                            SecureField("Password", text: $clearPassword)
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
                         }
-                        .onChange(of: clearPassword) { clearPassword, newPassword in
-                            ressource.setPassword(newPassword)
+                        
+                        Button(action: {
+                            isPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                                .accentColor(.gray)
                         }
+                        .padding(.trailing, 10)
+                    }
                     
                 }
                 Button {
@@ -104,6 +112,14 @@ struct EditRessourceView: View {
             }
             .navigationTitle("Bearbeite Gerät")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            // Load the password from the ressource
+            clearPassword = ressource.getPassword() ?? ""
+        }
+        .onChange(of: clearPassword) { clearPassword, newPassword in
+            // Save the encrypted password to the ressource
+            ressource.setPassword(newPassword)
         }
     }
 }

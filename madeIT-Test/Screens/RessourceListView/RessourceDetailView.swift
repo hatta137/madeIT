@@ -11,10 +11,11 @@ struct RessourceDetailView: View {
     
     @State var ressource: Ressource
     @State private var isShowingEditView = false
+    @State private var isPasswordVisible: Bool = false
     
     var body: some View {
         VStack {
-                       
+            
             
             VStack(alignment: .leading, spacing: 5) {
                 
@@ -25,7 +26,37 @@ struct RessourceDetailView: View {
                 ContactInfo(image: "network",               info: ressource.ip)
                 ContactInfo(image: "network",               info: ressource.url)
                 ContactInfo(image: "person",                info: ressource.userName)
-                ContactInfo(image: "key",                   info: ressource.getPassword() ?? "")
+                
+                ZStack(alignment: .trailing) {
+                    
+                    HStack {
+                        
+                        Image(systemName: "lock.circle")
+                            .padding(.horizontal, 10)
+                        
+                        if isPasswordVisible {
+                            Text(ressource.getPassword() ?? "Kein Passwort")
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
+                        } else {
+                            Text(String(repeating: "*", count: (ressource.getPassword() ?? "").count))
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
+                        }
+                        
+                        
+                        
+                        Button(action: {
+                            isPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                                .accentColor(.gray)
+                        }
+                        .padding(.horizontal, 40)
+                    
+                    }
+                    
+                }
                 
             }
             .padding(.bottom, 40)

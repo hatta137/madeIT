@@ -52,8 +52,8 @@ struct RessourceListView: View {
                             NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
                                 VStack(alignment: .leading) {
                                     Text(ressource.name)
-                                        .font(.title2)
-                                        .fontWeight(.medium)
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
                                     
                                     HStack(alignment: .center) {
                                         Text(ressource.ip)

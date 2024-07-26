@@ -11,11 +11,11 @@ import SwiftData
 struct CustomerListView: View {
     
     @Environment(\.modelContext) var modelContext
-    
     @Query var customers: [Customer]
+
     
-    @StateObject var viewModel = CustomerListViewModel()
-    
+    @State private var isShowingDetail = false
+    @State private var selectedCustomer: Customer?
     @State private var selectedFilter: FilterType = .alphabetical
     
     enum FilterType {
@@ -45,29 +45,25 @@ struct CustomerListView: View {
                             ForEach(filteredCustomers) { customer in
                                 CustomerListCell(customer: customer)
                                     .onTapGesture {
-                                        viewModel.isShowingDetail = true
-                                        viewModel.selectedCustomer = customer
+                                        isShowingDetail = true
+                                        selectedCustomer = customer
                                     }
                             }
                             .onDelete(perform: deleteCustomer(_:))
-                            
                         }
-                        
                     }
                 }
                 .navigationTitle("🗃️ Kunden")
                 .navigationBarTitleDisplayMode(.inline)
-                .disabled(viewModel.isShowingDetail)
+                .disabled(isShowingDetail)
                 
             }
-            .blur(radius: viewModel.isShowingDetail ? 20 : 0)
+            .blur(radius: isShowingDetail ? 20 : 0)
             
-            if viewModel.isShowingDetail {
-                CustomerDetailView(customer: viewModel.selectedCustomer!, isShowingDetail: $viewModel.isShowingDetail)
+            if isShowingDetail {
+                CustomerDetailView(customer: selectedCustomer!, isShowingDetail: $isShowingDetail)
             }
         }
-        
-        
     }
     
     var filteredCustomers: [Customer] {

@@ -10,8 +10,6 @@ import SwiftUI
 struct CustomerDetailView: View {
     
     @State var customer: Customer
-
-    @StateObject var viewModel = CustomerListViewModel()
     @Binding var isShowingDetail: Bool
     @State private var isShowingEditView = false
     
@@ -63,12 +61,6 @@ struct CustomerDetailView: View {
                 XDismissButton()
             }, alignment: .topTrailing)
         }
-        
-        
-    }
-    
-    func setCustomer(customer: Customer) {
-        viewModel.selectedCustomer = customer
     }
 }
 

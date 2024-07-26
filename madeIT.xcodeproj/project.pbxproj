@@ -11,7 +11,7 @@
 		B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE3182C5291AF0019B844 /* EditRessourceView.swift */; };
 		B18EE31B2C52DC610019B844 /* Industry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE31A2C52DC610019B844 /* Industry.swift */; };
 		B18EE31D2C52EA4C0019B844 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18EE31C2C52EA4C0019B844 /* helper.swift */; };
-		B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC002C216DA700075A5D /* madeIT_TestApp.swift */; };
+		B191FC012C216DA700075A5D /* madeIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC002C216DA700075A5D /* madeIT.swift */; };
 		B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191FC022C216DA700075A5D /* MadeItTab.swift */; };
 		B191FC052C216DA800075A5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B191FC042C216DA800075A5D /* Assets.xcassets */; };
 		B191FC082C216DA800075A5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B191FC072C216DA800075A5D /* Preview Assets.xcassets */; };
@@ -37,7 +37,7 @@
 		B18EE31A2C52DC610019B844 /* Industry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Industry.swift; sourceTree = "<group>"; };
 		B18EE31C2C52EA4C0019B844 /* helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		B191FBFD2C216DA700075A5D /* madeIT-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "madeIT-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B191FC002C216DA700075A5D /* madeIT_TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = madeIT_TestApp.swift; sourceTree = "<group>"; };
+		B191FC002C216DA700075A5D /* madeIT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = madeIT.swift; sourceTree = "<group>"; };
 		B191FC022C216DA700075A5D /* MadeItTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadeItTab.swift; sourceTree = "<group>"; };
 		B191FC042C216DA800075A5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B191FC072C216DA800075A5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 				B191FC282C21869800075A5D /* Screens */,
 				B191FC252C21866000075A5D /* Views */,
 				B191FC1E2C217C7900075A5D /* Model */,
-				B191FC002C216DA700075A5D /* madeIT_TestApp.swift */,
+				B191FC002C216DA700075A5D /* madeIT.swift */,
 				B191FC022C216DA700075A5D /* MadeItTab.swift */,
 				B191FC042C216DA800075A5D /* Assets.xcassets */,
 				B191FC062C216DA800075A5D /* Preview Content */,
@@ -128,6 +128,7 @@
 		B191FC252C21866000075A5D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1DA7E182C53F0FE00619CBD /* Cells */,
 				B191FC272C21868B00075A5D /* Button */,
 				B1D3004C2C511B0F00489938 /* CustomModifiers.swift */,
 			);
@@ -162,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				B191FC122C216F9E00075A5D /* CustomerListView.swift */,
-				B191FC1C2C217BDE00075A5D /* CustomerListCell.swift */,
 			);
 			path = CustomerListView;
 			sourceTree = "<group>";
@@ -233,6 +233,14 @@
 			path = RessourceDetailView;
 			sourceTree = "<group>";
 		};
+		B1DA7E182C53F0FE00619CBD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B191FC1C2C217BDE00075A5D /* CustomerListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B191FBF82C216DA700075A5D /* Build configuration list for PBXProject "madeIT-Test" */;
+			buildConfigurationList = B191FBF82C216DA700075A5D /* Build configuration list for PBXProject "madeIT" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -309,7 +317,7 @@
 				B191FC032C216DA700075A5D /* MadeItTab.swift in Sources */,
 				3EDD6AB62C5261BE002A4D0A /* RessourceDetailView.swift in Sources */,
 				B1D300512C51231F00489938 /* NewRessourceView.swift in Sources */,
-				B191FC012C216DA700075A5D /* madeIT_TestApp.swift in Sources */,
+				B191FC012C216DA700075A5D /* madeIT.swift in Sources */,
 				B1D3004D2C511B0F00489938 /* CustomModifiers.swift in Sources */,
 				B18EE3192C5291AF0019B844 /* EditRessourceView.swift in Sources */,
 				B18EE31B2C52DC610019B844 /* Industry.swift in Sources */,
@@ -509,7 +517,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B191FBF82C216DA700075A5D /* Build configuration list for PBXProject "madeIT-Test" */ = {
+		B191FBF82C216DA700075A5D /* Build configuration list for PBXProject "madeIT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B191FC092C216DA800075A5D /* Debug */,

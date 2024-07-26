@@ -2,7 +2,9 @@ import CryptoKit
 import Foundation
 
 class CryptoHelper {
+    
     private static let keyString = "xULpcaTwYFPeN7TBIVhHM0fwhEyaHgRth8g/VToFPOg="
+    
     private static let symmetricKey: SymmetricKey = {
         guard let data = Data(base64Encoded: keyString) else {
             fatalError("Invalid Base64 key string.")

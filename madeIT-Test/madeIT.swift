@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct madeIT_TestApp: App {
+struct madeIT: App {
     var body: some Scene {
         WindowGroup {
             MadeItTab()

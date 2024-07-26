@@ -1,10 +1,3 @@
-//
-//  CustomerListView.swift
-//  madeIT-Test
-//
-//  Created by Hendrik Lendeckel on 18.06.24.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,7 +5,6 @@ struct CustomerListView: View {
     
     @Environment(\.modelContext) var modelContext
     @Query var customers: [Customer]
-
     
     @State private var isShowingDetail = false
     @State private var selectedCustomer: Customer?
@@ -26,47 +18,54 @@ struct CustomerListView: View {
     var body: some View {
         ZStack {
             NavigationStack {
-                
                 Form {
-                    Section{
-                        Picker("Filter", selection: $selectedFilter) {
-                            Text("Alphabetisch").tag(FilterType.alphabetical)
-                            Text("Branche").tag(FilterType.industry)
-                        }
-                        .pickerStyle(MenuPickerStyle())
-                    }
-                    
-                    if filteredCustomers.isEmpty {
-                        Text("Keine Kunden angelegt")
-                            .foregroundColor(.gray)
-                            .padding()
-                    } else {
-                        List{
-                            ForEach(filteredCustomers) { customer in
-                                CustomerListCell(customer: customer)
-                                    .onTapGesture {
-                                        isShowingDetail = true
-                                        selectedCustomer = customer
-                                    }
-                            }
-                            .onDelete(perform: deleteCustomer(_:))
-                        }
-                    }
+                    filterSection
+                    customerListSection
                 }
                 .navigationTitle("🗃️ Kunden")
                 .navigationBarTitleDisplayMode(.inline)
                 .disabled(isShowingDetail)
-                
             }
             .blur(radius: isShowingDetail ? 20 : 0)
             
-            if isShowingDetail {
-                CustomerDetailView(customer: selectedCustomer!, isShowingDetail: $isShowingDetail)
+            if isShowingDetail, let customer = selectedCustomer {
+                CustomerDetailView(customer: customer, isShowingDetail: $isShowingDetail)
             }
         }
     }
     
-    var filteredCustomers: [Customer] {
+    private var filterSection: some View {
+        Section {
+            Picker("Filter", selection: $selectedFilter) {
+                Text("Alphabetisch").tag(FilterType.alphabetical)
+                Text("Branche").tag(FilterType.industry)
+            }
+            .pickerStyle(MenuPickerStyle())
+        }
+    }
+    
+    private var customerListSection: some View {
+        Group {
+            if filteredCustomers.isEmpty {
+                Text("Keine Kunden angelegt")
+                    .foregroundColor(.gray)
+                    .padding()
+            } else {
+                List {
+                    ForEach(filteredCustomers) { customer in
+                        CustomerListCell(customer: customer)
+                            .onTapGesture {
+                                selectedCustomer = customer
+                                isShowingDetail = true
+                            }
+                    }
+                    .onDelete(perform: deleteCustomer)
+                }
+            }
+        }
+    }
+    
+    private var filteredCustomers: [Customer] {
         switch selectedFilter {
         case .alphabetical:
             return customers.sorted { $0.name < $1.name }
@@ -75,19 +74,11 @@ struct CustomerListView: View {
         }
     }
     
-    func deleteCustomer(_ indexSet: IndexSet) {
-        for index in indexSet {
+    private func deleteCustomer(at offsets: IndexSet) {
+        offsets.forEach { index in
             let customer = customers[index]
-            
-            for ressource in customer.ressources {
-                modelContext.delete(ressource)
-            }
-            
+            customer.ressources.forEach(modelContext.delete)
             modelContext.delete(customer)
         }
     }
 }
-//
-//#Preview {
-//    CustomerListView()
-//}

@@ -86,8 +86,8 @@ struct EditRessourceView: View {
                         .onAppear {
                             clearPassword = ressource.getPassword() ?? "not found"
                         }
-                        .onChange(of: clearPassword) { newValue in
-                            ressource.setPassword(newValue)
+                        .onChange(of: clearPassword) { clearPassword, newPassword in
+                            ressource.setPassword(newPassword)
                         }
                     
                 }

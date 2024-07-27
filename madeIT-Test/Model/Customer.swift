@@ -11,6 +11,7 @@ class Customer: Identifiable {
     var industry: Industry
     var address: String
     var ressources: [Resource] = []
+    var graphics: [Graphic] = []
     
     init(name: String = "", 
          contactName: String = "",

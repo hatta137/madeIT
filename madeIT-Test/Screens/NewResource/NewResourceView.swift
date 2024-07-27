@@ -74,11 +74,13 @@ struct NewResourceView: View {
             TextField("IP-Adresse", text: $ip)
                 .focused($focusedTextField, equals: .ip)
                 .onSubmit { focusedTextField = .url }
+                .keyboardType(.numbersAndPunctuation)
                 .submitLabel(.next)
             
             TextField("URL", text: $url)
                 .focused($focusedTextField, equals: .url)
                 .onSubmit { focusedTextField = .userName }
+                .keyboardType(.URL)
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
                 .submitLabel(.next)

@@ -14,7 +14,14 @@ struct NewCustomerView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedTextField: FormTextField?
     
-    @State private var customer = Customer(name: "", contactName: "", tel: "", email: "", industry: .undefined, address: "")
+    @State private var name: String = ""
+    @State private var contactName: String = ""
+    @State private var tel: String = ""
+    @State private var email: String = ""
+    @State private var address: String = ""
+    @State private var industry: Industry = .undefined
+    
+    
     @State private var isSaved = false
     
     enum FormTextField {
@@ -33,19 +40,19 @@ struct NewCustomerView: View {
     
     private var customerInfoSection: some View {
         Section("Kundeninformationen") {
-            TextField("Firmennamen", text: $customer.name)
+            TextField("Firmennamen", text: $name)
                 .focused($focusedTextField, equals: .name)
                 .onSubmit { focusedTextField = .address }
                 .submitLabel(.next)
             
-            Picker("Branche", selection: $customer.industry) {
+            Picker("Branche", selection: $industry) {
                 ForEach(Industry.allCases, id: \.self) { type in
                     Text(type.rawValue).tag(type)
                 }
             }
             .pickerStyle(MenuPickerStyle())
             
-            TextField("Addresse", text: $customer.address)
+            TextField("Addresse", text: $address)
                 .focused($focusedTextField, equals: .address)
                 .onSubmit { focusedTextField = .contactname }
                 .submitLabel(.next)
@@ -54,17 +61,18 @@ struct NewCustomerView: View {
     
     private var contactPersonSection: some View {
         Section("Kontaktperson") {
-            TextField("Name", text: $customer.contactName)
+            TextField("Name", text: $contactName)
                 .focused($focusedTextField, equals: .contactname)
                 .onSubmit { focusedTextField = .tel }
                 .submitLabel(.next)
             
-            TextField("Telefonnummer", text: $customer.tel)
+            TextField("Telefonnummer", text: $tel)
                 .focused($focusedTextField, equals: .tel)
                 .onSubmit { focusedTextField = .email }
+                .keyboardType(.numberPad)
                 .submitLabel(.next)
             
-            TextField("Email", text: $customer.email)
+            TextField("Email", text: $email)
                 .focused($focusedTextField, equals: .email)
                 .onSubmit { focusedTextField = nil }
                 .submitLabel(.continue)
@@ -76,17 +84,23 @@ struct NewCustomerView: View {
     
     private var saveButton: some View {
         Button("Save Changes") {
+            
+            let customer = Customer(name: name, contactName: contactName, tel: tel, email: email, industry: industry, address: address)
+            
             modelContext.insert(customer)
-            customer = Customer(name: "", contactName: "", tel: "", email: "", industry: .undefined, address: "")
+            
+            name = ""
+            contactName = ""
+            email = ""
+            industry = .undefined
+            address = ""
+            tel = ""
             isSaved = true
             dismiss()
         }
     }
 }
 
-//#Preview {
-//    NewCustomerView()
-//}
 
 
 //#Preview {

@@ -14,10 +14,14 @@ struct GraphicListView: View {
             List {
                 ForEach(graphics) { graphic in
                     VStack(alignment: .leading) {
+                        
                         Text(graphic.name)
                             .font(.title3)
                             .fontWeight(.semibold)
+                        
                         Text(graphic.notes)
+                        
+                        Text(graphic.customer?.name ?? "not found")
                         
                         if let imageData = graphic.image, let uiImage = UIImage(data: imageData) {
                             Image(uiImage: uiImage)

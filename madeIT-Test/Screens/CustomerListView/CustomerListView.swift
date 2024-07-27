@@ -78,6 +78,7 @@ struct CustomerListView: View {
         offsets.forEach { index in
             let customer = customers[index]
             customer.ressources.forEach(modelContext.delete)
+            customer.graphics.forEach(modelContext.delete)
             modelContext.delete(customer)
         }
     }

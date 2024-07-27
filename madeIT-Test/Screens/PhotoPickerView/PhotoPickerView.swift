@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import SwiftData
 
 struct PhotoPickerView: View {
     
@@ -19,7 +20,9 @@ struct PhotoPickerView: View {
     @State private var name: String = ""
     @State private var notes: String = ""
     @State private var imageData: Data?
+    @State private var customer: Customer? = nil
     
+    @Query var customers: [Customer]
     
     @FocusState private var focusedTextField: FormTextField?
     
@@ -32,6 +35,10 @@ struct PhotoPickerView: View {
         VStack {
             
             Form {
+                
+                customerInformationSection
+                
+                
                 Section("Grafikinformationen") {
                     TextField("Name", text: $name)
                         .focused($focusedTextField, equals: .name)
@@ -70,7 +77,7 @@ struct PhotoPickerView: View {
                             return
                         }
                         
-                        let graphic = Graphic(name: name, notes: notes, image: imageData)
+                        let graphic = Graphic(name: name, notes: notes, image: imageData, customer: customer)
                         
                         do {
                             try modelContext.insert(graphic)
@@ -102,6 +109,18 @@ struct PhotoPickerView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private var customerInformationSection: some View {
+        Section("Kundeninformation") {
+            Picker("Kunde", selection: $customer) {
+                Text("Wähle einen Kunden").tag(Customer?.none)
+                ForEach(customers, id: \.self) { customer in
+                    Text(customer.name).tag(customer as Customer?)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
         }
     }
     

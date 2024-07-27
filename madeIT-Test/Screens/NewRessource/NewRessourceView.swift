@@ -1,10 +1,3 @@
-//
-//  NewRessourceView.swift
-//  madeIT-Test
-//
-//  Created by Hendrik Lendeckel on 24.07.24.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,11 +5,7 @@ struct NewRessourceView: View {
     
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    
     @FocusState private var focusedTextField: FormTextField?
-    enum FormTextField {
-        case name, notes, ip, url, userName, password
-    }
     
     @State private var name = ""
     @State private var typeOfRessource: TypeOfRessource = .undefined
@@ -29,116 +18,121 @@ struct NewRessourceView: View {
     
     @State private var isSaved = false
     
-    @Query var customers: [Customer] // Abfrage für alle Kunden
+    @Query var customers: [Customer]
+    
+    enum FormTextField {
+        case name, notes, ip, url, userName, password
+    }
     
     var body: some View {
         NavigationStack {
             Form {
-                Section("Kundeninformation") {
-                    List {
-                        Picker("Kunde", selection: $customer) {
-                            Text("Wähle einen Kunden").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
-                            ForEach(customers, id: \.self) { customer in
-                                Text(customer.name).tag(customer as Customer?)
-                            }
-                        }
-                        .pickerStyle(MenuPickerStyle())
-                    }
-                }
-                
-                
-                Section("Geräteinformationen") {
-                    TextField("Name", text: $name)
-                        .focused($focusedTextField, equals: .name)
-                        .onSubmit { focusedTextField = .notes }
-                        .submitLabel(.next)
-                    
-                    TextField("Notiz", text: $notes)
-                        .focused($focusedTextField, equals: .notes)
-                        .onSubmit { focusedTextField = .ip }
-                        .submitLabel(.next)
-                    
-                    List {
-                        Picker("Typ", selection: $typeOfRessource) {
-                            ForEach(TypeOfRessource.allCases, id: \.self) { type in
-                                Text(type.rawValue).tag(type)
-                            }
-                        }
-                        .pickerStyle(MenuPickerStyle()) // Stil des Pickers
-                    }
-                    
-                    
-                }
-                
-                
-                
-                Section("Netzwekinformationen") {
-                    TextField("IP-Adresse", text: $ip)
-                        .focused($focusedTextField, equals: .ip)
-                        .onSubmit { focusedTextField = .url }
-                        .submitLabel(.next)
-                    
-                    TextField("URL", text: $url)
-                        .focused($focusedTextField, equals: .url)
-                        .onSubmit { focusedTextField = .userName }
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .submitLabel(.next)
-                    
-                }
-                Section("Zugangsinformationen") {
-                    TextField("Username", text: $userName)
-                        .focused($focusedTextField, equals: .userName)
-                        .onSubmit { focusedTextField = .password }
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .submitLabel(.next)
-                    
-                    TextField("Password", text: $password)
-                        .focused($focusedTextField, equals: .password)
-                        .onSubmit { focusedTextField = nil }
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .submitLabel(.continue)
-                    
-                }
-                Button {
-                    let newRessource = Ressource(
-                        name: name,
-                        typeOfRessource: typeOfRessource,
-                        notes: notes,
-                        ip: ip,
-                        url: url,
-                        customer: customer,
-                        userName: userName,
-                        password: password)
-                    print(password)
-                    
-                    modelContext.insert(newRessource)
-                    
-                    // reset values
-                    
-                    name = ""
-                    typeOfRessource = .undefined
-                    notes = ""
-                    ip = ""
-                    url = ""
-                    userName = ""
-                    password = ""
-                    customer = nil
-                    
-                    // Mark as saved and trigger navigation
-                    isSaved = true
-                    dismiss()
-                    
-                } label: {
-                    Text("Save Changes")
-                }
+                customerInformationSection
+                deviceInformationSection
+                networkInformationSection
+                accessInformationSection
+                saveButton
             }
         }
     }
+    
+    private var customerInformationSection: some View {
+        Section("Kundeninformation") {
+            Picker("Kunde", selection: $customer) {
+                Text("Wähle einen Kunden").tag(Customer?.none)
+                ForEach(customers, id: \.self) { customer in
+                    Text(customer.name).tag(customer as Customer?)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+        }
+    }
+    
+    private var deviceInformationSection: some View {
+        Section("Geräteinformationen") {
+            TextField("Name", text: $name)
+                .focused($focusedTextField, equals: .name)
+                .onSubmit { focusedTextField = .notes }
+                .submitLabel(.next)
+            
+            TextField("Notiz", text: $notes)
+                .focused($focusedTextField, equals: .notes)
+                .onSubmit { focusedTextField = .ip }
+                .submitLabel(.next)
+            
+            Picker("Typ", selection: $typeOfRessource) {
+                ForEach(TypeOfRessource.allCases, id: \.self) { type in
+                    Text(type.rawValue).tag(type)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+        }
+    }
+    
+    private var networkInformationSection: some View {
+        Section("Netzwerkinformationen") {
+            TextField("IP-Adresse", text: $ip)
+                .focused($focusedTextField, equals: .ip)
+                .onSubmit { focusedTextField = .url }
+                .submitLabel(.next)
+            
+            TextField("URL", text: $url)
+                .focused($focusedTextField, equals: .url)
+                .onSubmit { focusedTextField = .userName }
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+                .submitLabel(.next)
+        }
+    }
+    
+    private var accessInformationSection: some View {
+        Section("Zugangsinformationen") {
+            TextField("Username", text: $userName)
+                .focused($focusedTextField, equals: .userName)
+                .onSubmit { focusedTextField = .password }
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+                .submitLabel(.next)
+            
+            TextField("Password", text: $password)
+                .focused($focusedTextField, equals: .password)
+                .onSubmit { focusedTextField = nil }
+                .autocapitalization(.none)
+                .autocorrectionDisabled()
+                .submitLabel(.continue)
+        }
+    }
+    
+    private var saveButton: some View {
+        Button("Save Changes") {
+            let newRessource = Ressource(
+                name: name,
+                typeOfRessource: typeOfRessource,
+                notes: notes,
+                ip: ip,
+                url: url,
+                customer: customer,
+                userName: userName,
+                password: password
+            )
+            
+            modelContext.insert(newRessource)
+            
+            resetForm()
+            
+            isSaved = true
+            dismiss()
+        }
+    }
+    
+    private func resetForm() {
+        name = ""
+        typeOfRessource = .undefined
+        notes = ""
+        ip = ""
+        url = ""
+        userName = ""
+        password = ""
+        customer = nil
+    }
 }
-//
-//#Preview {
-//    NewRessourceView()
-//}

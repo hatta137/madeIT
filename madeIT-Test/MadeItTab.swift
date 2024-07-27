@@ -21,8 +21,11 @@ struct MadeItTab: View {
                 .tabItem { Label("Neu", systemImage: "plus") }
               
             
-            RessourceListView()
+            ResourceListView()
                 .tabItem { Label("Geräte", systemImage: "server.rack") }
+            
+            GraphicListView()
+                .tabItem { Label("Grafiken", systemImage: "photo") }
                
         }
     }

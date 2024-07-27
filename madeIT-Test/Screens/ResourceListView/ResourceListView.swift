@@ -8,10 +8,10 @@
 import SwiftUI
 import SwiftData
 
-struct RessourceListView: View {
+struct ResourceListView: View {
     
     @Environment(\.modelContext) var modelContext
-    @Query var ressources: [Ressource]
+    @Query var resources: [Resource]
     @Query var customers: [Customer] // Abfrage für alle Kunden
     
     @State private var selectedCustomer: Customer? = nil
@@ -49,7 +49,7 @@ struct RessourceListView: View {
                 } else {
                     List {
                         ForEach(filteredAndSortedRessources) { ressource in
-                            NavigationLink(destination: RessourceDetailView(ressource: ressource)) {
+                            NavigationLink(destination: ResourceDetailView(resource: ressource)) {
                                 VStack(alignment: .leading) {
                                     Text(ressource.name)
                                         .font(.title3)
@@ -75,8 +75,8 @@ struct RessourceListView: View {
         }
     }
     
-    var filteredAndSortedRessources: [Ressource] {
-        var filtered = ressources
+    var filteredAndSortedRessources: [Resource] {
+        var filtered = resources
         
         // Filter nach Kunden
         if let customer = selectedCustomer {
@@ -94,7 +94,7 @@ struct RessourceListView: View {
     
     func deleteResource(at offsets: IndexSet) {
         for index in offsets {
-            let ressource = ressources[index]
+            let ressource = resources[index]
             modelContext.delete(ressource)
         }
     }

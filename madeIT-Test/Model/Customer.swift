@@ -10,7 +10,7 @@ class Customer: Identifiable {
     var email: String
     var industry: Industry
     var address: String
-    var ressources: [Ressource] = []
+    var ressources: [Resource] = []
     
     init(name: String = "", 
          contactName: String = "",

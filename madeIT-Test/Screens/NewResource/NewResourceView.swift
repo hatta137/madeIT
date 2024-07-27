@@ -1,14 +1,14 @@
 import SwiftUI
 import SwiftData
 
-struct NewRessourceView: View {
+struct NewResourceView: View {
     
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedTextField: FormTextField?
     
     @State private var name = ""
-    @State private var typeOfRessource: TypeOfRessource = .undefined
+    @State private var typeOfRessource: TypeOfResource = .undefined
     @State private var notes = ""
     @State private var ip = ""
     @State private var url = ""
@@ -61,7 +61,7 @@ struct NewRessourceView: View {
                 .submitLabel(.next)
             
             Picker("Typ", selection: $typeOfRessource) {
-                ForEach(TypeOfRessource.allCases, id: \.self) { type in
+                ForEach(TypeOfResource.allCases, id: \.self) { type in
                     Text(type.rawValue).tag(type)
                 }
             }
@@ -105,7 +105,7 @@ struct NewRessourceView: View {
     
     private var saveButton: some View {
         Button("Save Changes") {
-            let newRessource = Ressource(
+            let newRessource = Resource(
                 name: name,
                 typeOfRessource: typeOfRessource,
                 notes: notes,

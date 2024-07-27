@@ -1,5 +1,5 @@
 //
-//  TypeOfRessource.swift
+//  TypeOfResource.swift
 //  madeIT-Test
 //
 //  Created by Hendrik Lendeckel on 18.06.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TypeOfRessource: String, Codable, Identifiable, CaseIterable {
+enum TypeOfResource: String, Codable, Identifiable, CaseIterable {
     
     var id: String { rawValue }
     

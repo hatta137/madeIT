@@ -10,10 +10,10 @@ import Foundation
 import SwiftData
 
 @Model
-class Ressource: Identifiable {
+class Resource: Identifiable {
     var id: UUID
     var name: String
-    var typeOfRessource: TypeOfRessource
+    var typeOfRessource: TypeOfResource
     var notes: String
     var ip: String
     var url: String
@@ -22,7 +22,7 @@ class Ressource: Identifiable {
     private var encryptedPassword: String
 
     init(name: String = "",
-         typeOfRessource: TypeOfRessource = .undefined,
+         typeOfRessource: TypeOfResource = .undefined,
          notes: String = "",
          ip: String = "",
          url: String = "",

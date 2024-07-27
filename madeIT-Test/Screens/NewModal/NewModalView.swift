@@ -17,8 +17,11 @@ struct NewModalView: View {
                 NavigationLink(destination: NewCustomerView()) {
                     Text("Kunde anlegen")
                 }
-                NavigationLink(destination: NewRessourceView()) {
+                NavigationLink(destination: NewResourceView()) {
                     Text("Ressource anlegen")
+                }
+                NavigationLink(destination: PhotoPickerView()) {
+                    Text("Grafik anlegen")
                 }
             }
             .navigationTitle("🆕 Neu anlegen")

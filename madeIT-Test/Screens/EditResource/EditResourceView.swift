@@ -9,9 +9,9 @@ import SwiftUI
 import SwiftData
 
 // TODO Refactoring
-struct EditRessourceView: View {
+struct EditResourceView: View {
     
-    @Binding var ressource: Ressource
+    @Binding var ressource: Resource
     @Binding var isShowingEditView: Bool
     
     @Environment(\.modelContext) private var modelContext
@@ -54,7 +54,7 @@ struct EditRessourceView: View {
                     
                     List {
                         Picker("Typ", selection: $ressource.typeOfRessource) {
-                            ForEach(TypeOfRessource.allCases, id: \.self) { type in
+                            ForEach(TypeOfResource.allCases, id: \.self) { type in
                                 Text(type.rawValue).tag(type)
                             }
                         }

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct RessourceDetailView: View {
+struct ResourceDetailView: View {
     
-    @State var ressource: Ressource
+    @State var resource: Resource
     @State private var isShowingEditView = false
     @State private var isPasswordVisible: Bool = false
     
@@ -19,13 +19,13 @@ struct RessourceDetailView: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 
-                ContactInfo(image: "server.rack",           info: ressource.name)
-                ContactInfo(image: "person.crop.circle",    info: ressource.customer?.name ?? "no")
-                ContactInfo(image: "xserve",                info: ressource.typeOfRessource.rawValue)
-                ContactInfo(image: "list.bullet.clipboard", info: ressource.notes)
-                ContactInfo(image: "network",               info: ressource.ip)
-                ContactInfo(image: "network",               info: ressource.url)
-                ContactInfo(image: "person",                info: ressource.userName)
+                ContactInfo(image: "server.rack",           info: resource.name)
+                ContactInfo(image: "person.crop.circle",    info: resource.customer?.name ?? "no")
+                ContactInfo(image: "xserve",                info: resource.typeOfRessource.rawValue)
+                ContactInfo(image: "list.bullet.clipboard", info: resource.notes)
+                ContactInfo(image: "network",               info: resource.ip)
+                ContactInfo(image: "network",               info: resource.url)
+                ContactInfo(image: "person",                info: resource.userName)
                 
                 ZStack(alignment: .trailing) {
                     
@@ -35,11 +35,11 @@ struct RessourceDetailView: View {
                             .padding(.horizontal, 10)
                         
                         if isPasswordVisible {
-                            Text(ressource.getPassword() ?? "Kein Passwort")
+                            Text(resource.getPassword() ?? "Kein Passwort")
                                 .autocapitalization(.none)
                                 .autocorrectionDisabled()
                         } else {
-                            Text(String(repeating: "*", count: (ressource.getPassword() ?? "").count))
+                            Text(String(repeating: "*", count: (resource.getPassword() ?? "").count))
                                 .autocapitalization(.none)
                                 .autocorrectionDisabled()
                         }
@@ -66,10 +66,10 @@ struct RessourceDetailView: View {
             }
             .padding(.bottom, 40)
             .sheet(isPresented: $isShowingEditView) {
-                EditRessourceView(ressource: $ressource, isShowingEditView: $isShowingEditView)
+                EditResourceView(ressource: $resource, isShowingEditView: $isShowingEditView)
             }
         }
-        .navigationTitle(ressource.name)
+        .navigationTitle(resource.name)
         .navigationBarTitleDisplayMode(.inline)
     }
 }

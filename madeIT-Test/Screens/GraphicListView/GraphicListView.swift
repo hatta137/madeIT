@@ -23,7 +23,7 @@ struct GraphicListView: View {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxWidth: 300, maxHeight: .infinity)
+                                .frame(maxWidth: 250, maxHeight: .infinity)
                         }
                         
                     }

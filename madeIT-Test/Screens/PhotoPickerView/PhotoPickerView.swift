@@ -33,11 +33,8 @@ struct PhotoPickerView: View {
     
     var body: some View {
         VStack {
-            
             Form {
-                
                 customerInformationSection
-                
                 
                 Section("Grafikinformationen") {
                     TextField("Name", text: $name)
@@ -89,14 +86,8 @@ struct PhotoPickerView: View {
                             print("Fehler beim Speichern der Grafik: \(error.localizedDescription)")
                         }
                     }
-                    
                 }
-                
-                
-                
             }
-            
-            
         }
         .onChange(of: photosPickerItem) { _, _ in
             

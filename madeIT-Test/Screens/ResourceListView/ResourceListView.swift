@@ -70,7 +70,7 @@ struct ResourceListView: View {
                     }
                 }
             }
-            .navigationTitle("💻 Resourcen")
+            .navigationTitle("💻 Ressourcen")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

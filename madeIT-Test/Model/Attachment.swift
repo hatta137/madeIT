@@ -9,16 +9,16 @@ import Foundation
 import SwiftData
 
 @Model
-class Graphic: Identifiable {
+class Attachment: Identifiable {
     var name: String
     var notes: String
-    var image: Data?
+    var attachmentData: Data?
     var customer: Customer? // Optionaler Bezug auf Customer
     
-    init(name: String, notes: String, image: Data? = nil, customer: Customer? = nil) {
+    init(name: String, notes: String, attachmentData: Data? = nil, customer: Customer? = nil) {
         self.name = name
         self.notes = notes
-        self.image = image
+        self.attachmentData = attachmentData
         self.customer = customer
     }
 }

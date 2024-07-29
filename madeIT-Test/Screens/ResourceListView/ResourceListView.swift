@@ -1,5 +1,5 @@
 //
-//  RessourceListView.swift
+//  ResourceListView.swift
 //  madeIT-Test
 //
 //  Created by Hendrik Lendeckel on 18.06.24.
@@ -19,7 +19,7 @@ struct ResourceListView: View {
     
     enum FilterType {
         case alphabetical
-        case typeOfRessource
+        case typeOfResource
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct ResourceListView: View {
             Form {
                 Section {
                     Picker("Kunde", selection: $selectedCustomer) {
-                        Text("Alle Ressourcen anzeigen").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
+                        Text("Alle Resourcen anzeigen").tag(Customer?.none) // Standardtext für den Fall, dass kein Kunde ausgewählt ist
                         ForEach(customers, id: \.self) { customer in
                             Text(customer.name).tag(customer as Customer?)
                         }
@@ -37,29 +37,29 @@ struct ResourceListView: View {
                     
                     Picker("Filter", selection: $selectedFilter) {
                         Text("Alphabetisch").tag(FilterType.alphabetical)
-                        Text("Typ").tag(FilterType.typeOfRessource)
+                        Text("Typ").tag(FilterType.typeOfResource)
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
                 
-                if filteredAndSortedRessources.isEmpty {
-                    Text("Keine Ressourcen angelegt")
+                if filteredAndSortedResources.isEmpty {
+                    Text("Keine Resourcen angelegt")
                         .foregroundColor(.gray)
                         .padding()
                 } else {
                     List {
-                        ForEach(filteredAndSortedRessources) { ressource in
-                            NavigationLink(destination: ResourceDetailView(resource: ressource)) {
+                        ForEach(filteredAndSortedResources) { resource in
+                            NavigationLink(destination: ResourceDetailView(resource: resource)) {
                                 VStack(alignment: .leading) {
-                                    Text(ressource.name)
+                                    Text(resource.name)
                                         .font(.title3)
                                         .fontWeight(.semibold)
                                     
                                     HStack(alignment: .center) {
-                                        Text(ressource.ip)
+                                        Text(resource.ip)
                                             .font(.footnote)
                                             .fontWeight(.regular)
-                                        Text(ressource.url)
+                                        Text(resource.url)
                                             .font(.footnote)
                                             .fontWeight(.regular)
                                     }
@@ -70,12 +70,12 @@ struct ResourceListView: View {
                     }
                 }
             }
-            .navigationTitle("💻 Ressourcen")
+            .navigationTitle("💻 Resourcen")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
     
-    var filteredAndSortedRessources: [Resource] {
+    var filteredAndSortedResources: [Resource] {
         var filtered = resources
         
         // Filter nach Kunden
@@ -87,20 +87,20 @@ struct ResourceListView: View {
         switch selectedFilter {
         case .alphabetical:
             return filtered.sorted { $0.name < $1.name }
-        case .typeOfRessource:
-            return filtered.sorted { $0.typeOfRessource.rawValue < $1.typeOfRessource.rawValue }
+        case .typeOfResource:
+            return filtered.sorted { $0.typeOfResource.rawValue < $1.typeOfResource.rawValue }
         }
     }
     
     func deleteResource(at offsets: IndexSet) {
         for index in offsets {
-            let ressource = resources[index]
-            modelContext.delete(ressource)
+            let resource = resources[index]
+            modelContext.delete(resource)
         }
     }
 }
 //
 //#Preview {
-//    RessourceListView()
+//    ResourceListView()
 //}
 

@@ -22,4 +22,5 @@ enum TypeOfResource: String, Codable, Identifiable, CaseIterable {
     case usv = "USV"
     case website = "Website"
     case license = "Lizenz"
+    case printer = "Drucker"
 }

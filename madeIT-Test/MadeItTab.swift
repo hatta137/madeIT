@@ -16,16 +16,14 @@ struct MadeItTab: View {
             CustomerListView()
                 .tabItem { Label("Kunden", systemImage: "folder.badge.person.crop") }
   
-            
-            NewModalView()
-                .tabItem { Label("Neu", systemImage: "plus") }
-              
-            
             ResourceListView()
                 .tabItem { Label("Geräte", systemImage: "server.rack") }
             
-            GraphicListView()
-                .tabItem { Label("Grafiken", systemImage: "photo") }
+            AttachmentListView()
+                .tabItem { Label("Anhänge", systemImage: "photo.on.rectangle") }
+            
+            NewModalView()
+                .tabItem { Label("Neu", systemImage: "plus") }
                
         }
     }

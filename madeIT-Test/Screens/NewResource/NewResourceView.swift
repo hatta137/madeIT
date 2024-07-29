@@ -8,7 +8,7 @@ struct NewResourceView: View {
     @FocusState private var focusedTextField: FormTextField?
     
     @State private var name = ""
-    @State private var typeOfRessource: TypeOfResource = .undefined
+    @State private var typeOfResource: TypeOfResource = .undefined
     @State private var notes = ""
     @State private var ip = ""
     @State private var url = ""
@@ -60,7 +60,7 @@ struct NewResourceView: View {
                 .onSubmit { focusedTextField = .ip }
                 .submitLabel(.next)
             
-            Picker("Typ", selection: $typeOfRessource) {
+            Picker("Typ", selection: $typeOfResource) {
                 ForEach(TypeOfResource.allCases, id: \.self) { type in
                     Text(type.rawValue).tag(type)
                 }
@@ -107,9 +107,9 @@ struct NewResourceView: View {
     
     private var saveButton: some View {
         Button("Save Changes") {
-            let newRessource = Resource(
+            let newResource = Resource(
                 name: name,
-                typeOfRessource: typeOfRessource,
+                typeOfResource: typeOfResource,
                 notes: notes,
                 ip: ip,
                 url: url,
@@ -118,7 +118,7 @@ struct NewResourceView: View {
                 password: password
             )
             
-            modelContext.insert(newRessource)
+            modelContext.insert(newResource)
             
             resetForm()
             
@@ -129,7 +129,7 @@ struct NewResourceView: View {
     
     private func resetForm() {
         name = ""
-        typeOfRessource = .undefined
+        typeOfResource = .undefined
         notes = ""
         ip = ""
         url = ""

@@ -1,5 +1,5 @@
 //
-//  RessourceDetailView.swift
+//  ResourceDetailView.swift
 //  madeIT-Test
 //
 //  Created by Hendrik Lendeckel on 18.06.24.
@@ -21,7 +21,7 @@ struct ResourceDetailView: View {
                 
                 ContactInfo(image: "server.rack",           info: resource.name)
                 ContactInfo(image: "person.crop.circle",    info: resource.customer?.name ?? "no")
-                ContactInfo(image: "xserve",                info: resource.typeOfRessource.rawValue)
+                ContactInfo(image: "xserve",                info: resource.typeOfResource.rawValue)
                 ContactInfo(image: "list.bullet.clipboard", info: resource.notes)
                 ContactInfo(image: "network",               info: resource.ip)
                 ContactInfo(image: "network",               info: resource.url)
@@ -66,7 +66,7 @@ struct ResourceDetailView: View {
             }
             .padding(.bottom, 40)
             .sheet(isPresented: $isShowingEditView) {
-                EditResourceView(ressource: $resource, isShowingEditView: $isShowingEditView)
+                EditResourceView(resource: $resource, isShowingEditView: $isShowingEditView)
             }
         }
         .navigationTitle(resource.name)
@@ -93,7 +93,7 @@ struct ReesourceInfo: View {
 
 //
 //#Preview {
-//    let ressource = Ressource(
+//    let resource = Resource(
 //        name: "HyperV",
 //        notes: "Ich stehe im Keller",
 //        ip: "10.10.10.1",
@@ -101,6 +101,6 @@ struct ReesourceInfo: View {
 //        userName: "admin",
 //        password: "admin1234"
 //    )
-//    return RessourceDetailView(ressource: ressource)
-//        .modelContainer(for: [Ressource.self])
+//    return ResourceDetailView(resource: resource)
+//        .modelContainer(for: [Resource.self])
 //}

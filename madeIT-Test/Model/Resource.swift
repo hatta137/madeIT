@@ -1,5 +1,5 @@
 //
-//  Ressource.swift
+//  Resource.swift
 //  madeIT-Test
 //
 //  Created by Hendrik Lendeckel on 18.06.24.
@@ -13,7 +13,7 @@ import SwiftData
 class Resource: Identifiable {
     var id: UUID
     var name: String
-    var typeOfRessource: TypeOfResource
+    var typeOfResource: TypeOfResource
     var notes: String
     var ip: String
     var url: String
@@ -22,7 +22,7 @@ class Resource: Identifiable {
     private var encryptedPassword: String
 
     init(name: String = "",
-         typeOfRessource: TypeOfResource = .undefined,
+         typeOfResource: TypeOfResource = .undefined,
          notes: String = "",
          ip: String = "",
          url: String = "",
@@ -32,7 +32,7 @@ class Resource: Identifiable {
         
         self.id = UUID()
         self.name = name
-        self.typeOfRessource = typeOfRessource
+        self.typeOfResource = typeOfResource
         self.notes = notes
         self.ip = ip
         self.url = url

@@ -1,5 +1,5 @@
 //
-//  EditRessourceView.swift
+//  EditResourceView.swift
 //  madeIT-Test
 //
 //  Created by Hendrik Lendeckel on 25.07.24.
@@ -11,7 +11,7 @@ import SwiftData
 // TODO Refactoring
 struct EditResourceView: View {
     
-    @Binding var ressource: Resource
+    @Binding var resource: Resource
     @Binding var isShowingEditView: Bool
     
     @Environment(\.modelContext) private var modelContext
@@ -31,7 +31,7 @@ struct EditResourceView: View {
             Form {
                 Section("Kundeninformation") {
                     List {
-                        Picker("Kunde", selection: $ressource.customer) {
+                        Picker("Kunde", selection: $resource.customer) {
                             Text("Wähle einen Kunden").tag(Customer?.none)
                             ForEach(customers, id: \.self) { customer in
                                 Text(customer.name).tag(customer as Customer?)
@@ -42,18 +42,18 @@ struct EditResourceView: View {
                 }
                 
                 Section("Geräteinformationen") {
-                    TextField("Name", text: $ressource.name)
+                    TextField("Name", text: $resource.name)
                         .focused($focusedTextField, equals: .name)
                         .onSubmit { focusedTextField = .notes }
                         .submitLabel(.next)
                     
-                    TextField("Notiz", text: $ressource.notes)
+                    TextField("Notiz", text: $resource.notes)
                         .focused($focusedTextField, equals: .notes)
                         .onSubmit { focusedTextField = .ip }
                         .submitLabel(.next)
                     
                     List {
-                        Picker("Typ", selection: $ressource.typeOfRessource) {
+                        Picker("Typ", selection: $resource.typeOfResource) {
                             ForEach(TypeOfResource.allCases, id: \.self) { type in
                                 Text(type.rawValue).tag(type)
                             }
@@ -62,12 +62,12 @@ struct EditResourceView: View {
                     }
                 }
                 Section("Netzwekinformationen") {
-                    TextField("IP-Adresse", text: $ressource.ip)
+                    TextField("IP-Adresse", text: $resource.ip)
                         .focused($focusedTextField, equals: .ip)
                         .onSubmit { focusedTextField = .url }
                         .submitLabel(.next)
                     
-                    TextField("URL", text: $ressource.url)
+                    TextField("URL", text: $resource.url)
                         .focused($focusedTextField, equals: .url)
                         .onSubmit { focusedTextField = .userName }
                         .submitLabel(.next)
@@ -75,7 +75,7 @@ struct EditResourceView: View {
                 }
                 
                 Section("Zugangsinformationen") {
-                    TextField("Username", text: $ressource.userName)
+                    TextField("Username", text: $resource.userName)
                         .focused($focusedTextField, equals: .userName)
                         .onSubmit { focusedTextField = .password }
                         .autocapitalization(.none)
@@ -118,16 +118,16 @@ struct EditResourceView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
-            // Load the password from the ressource
-            clearPassword = ressource.getPassword() ?? ""
+            // Load the password from the resource
+            clearPassword = resource.getPassword() ?? ""
         }
         .onChange(of: clearPassword) { clearPassword, newPassword in
-            // Save the encrypted password to the ressource
-            ressource.setPassword(newPassword)
+            // Save the encrypted password to the resource
+            resource.setPassword(newPassword)
         }
     }
 }
 
 //#Preview {
-//    EditRessourceView()
+//    EditResourceView()
 //}

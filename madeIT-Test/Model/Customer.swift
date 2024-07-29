@@ -10,8 +10,8 @@ class Customer: Identifiable {
     var email: String
     var industry: Industry
     var address: String
-    var ressources: [Resource] = []
-    var graphics: [Graphic] = []
+    var resources: [Resource] = []
+    var graphics: [Attachment] = []
     
     init(name: String = "", 
          contactName: String = "",

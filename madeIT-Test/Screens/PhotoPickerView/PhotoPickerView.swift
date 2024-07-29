@@ -74,7 +74,7 @@ struct PhotoPickerView: View {
                             return
                         }
                         
-                        let graphic = Graphic(name: name, notes: notes, image: imageData, customer: customer)
+                        let graphic = Attachment(name: name, notes: notes, attachmentData: imageData, customer: customer)
                         
                         do {
                             try modelContext.insert(graphic)

@@ -36,7 +36,7 @@ struct CustomerListView: View {
     
     private var filterSection: some View {
         Section {
-            Picker("Filter", selection: $selectedFilter) {
+            Picker("Sortieren nach", selection: $selectedFilter) {
                 Text("Alphabetisch").tag(FilterType.alphabetical)
                 Text("Branche").tag(FilterType.industry)
             }
@@ -77,7 +77,7 @@ struct CustomerListView: View {
     private func deleteCustomer(at offsets: IndexSet) {
         offsets.forEach { index in
             let customer = customers[index]
-            customer.ressources.forEach(modelContext.delete)
+            customer.resources.forEach(modelContext.delete)
             customer.graphics.forEach(modelContext.delete)
             modelContext.delete(customer)
         }

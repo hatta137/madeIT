@@ -13,6 +13,6 @@ struct madeIT: App {
         WindowGroup {
             MadeItTab()
         }
-        .modelContainer(for: [Customer.self, Resource.self, Graphic.self])
+        .modelContainer(for: [Customer.self, Resource.self, Attachment.self])
     }
 }

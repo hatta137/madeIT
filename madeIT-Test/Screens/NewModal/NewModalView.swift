@@ -7,9 +7,20 @@
 
 import SwiftUI
 
+enum PickerType: Identifiable {
+    case photo, file
+    
+    var id: Int {
+        hashValue
+    }
+}
+
 struct NewModalView: View {
-    
-    
+    @State private var actionSheetVisible = false
+    @State private var showPhotoPicker = false
+    @State private var showFileImporter = false
+    @State private var pickerType: PickerType?
+    @State var fileURL: URL?
     
     var body: some View {
         NavigationStack {
@@ -18,17 +29,37 @@ struct NewModalView: View {
                     Text("Kunde anlegen")
                 }
                 NavigationLink(destination: NewResourceView()) {
-                    Text("Ressource anlegen")
+                    Text("Resource anlegen")
                 }
-                NavigationLink(destination: PhotoPickerView()) {
-                    Text("Grafik anlegen")
+                Button("Anhang hinzufügen") {
+                    self.actionSheetVisible = true
                 }
             }
             .navigationTitle("🆕 Neu anlegen")
             .navigationBarTitleDisplayMode(.inline)
+            .actionSheet(isPresented: $actionSheetVisible) {
+                ActionSheet(
+                    title: Text("Wählen Sie eine Option"),
+                    buttons: [
+                        .default(Text("Foto auswählen")) {
+                            pickerType = .photo
+                        },
+                        .default(Text("Datei auswählen")) {
+                            pickerType = .file
+                        },
+                        .cancel()
+                    ]
+                )
+            }
+            .sheet(item: $pickerType) { picker in
+                if picker == .photo {
+                    PhotoPickerView()
+                } else if picker == .file {
+                    DocumentPickerView(fileURL: $fileURL)
+                }
+            }
         }
     }
-    
 }
 //
 //#Preview {

@@ -9,9 +9,15 @@ import SwiftUI
 
 struct CustomerDetailView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @State var customer: Customer
     @Binding var isShowingDetail: Bool
     @State private var isShowingEditView = false
+    
+    var backgroundColor: Color {
+        colorScheme == .light ? Color(.systemBackground) : Color(.secondarySystemBackground)
+    }
     
     
     var body: some View {
@@ -25,7 +31,7 @@ struct CustomerDetailView: View {
                 
                 HStack(spacing: 20) {
                     Image(systemName: "server.rack")
-                    Text("\(customer.ressources.count)")
+                    Text("\(customer.resources.count)")
                 }
                 .padding(.bottom, 30)
                 
@@ -52,7 +58,7 @@ struct CustomerDetailView: View {
                 
             }
             .frame(width: 300, height: 500)
-            .background(Color(.systemBackground))
+            .background(backgroundColor)
             .cornerRadius(12)
             .shadow(radius: 40)
             .overlay(Button {

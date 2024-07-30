@@ -33,50 +33,9 @@ struct DocumentPickerView: View {
         VStack {
             Form {
                 customerInformationSection
+                documentInformationSection
                 
-                Section("Dateiinformationen") {
-                    TextField("Name", text: $name)
-                        .focused($focusedTextField, equals: .name)
-                        .onSubmit { focusedTextField = .notes }
-                        .submitLabel(.next)
-                    
-                    TextField("Notiz", text: $notes)
-                        .focused($focusedTextField, equals: .notes)
-                        .onSubmit { focusedTextField = nil }
-                        .submitLabel(.continue)
-                }
-                
-                Section {
-                    Text(fileURL?.lastPathComponent ?? "Keine Datei ausgewählt")
-                        .fileImporter(isPresented: .constant(true), allowedContentTypes: [.item], allowsMultipleSelection: false) { result in
-                            switch result {
-                            case .success(let urls):
-                                guard let url = urls.first else {
-                                    print("No file selected")
-                                    return
-                                }
-                                print("File selected: \(url)")
-                                fileURL = url
-                                do {
-                                    // Start accessing the security-scoped resource
-                                    let accessGranted = fileURL?.startAccessingSecurityScopedResource() ?? false
-                                    defer { fileURL?.stopAccessingSecurityScopedResource() }
-                                    
-                                    guard accessGranted else {
-                                        print("Unable to access the security-scoped resource.")
-                                        return
-                                    }
-                                    
-                                    attachmentData = try Data(contentsOf: url)
-                                    print("File data loaded successfully: \(attachmentData?.count ?? 0) bytes")
-                                } catch {
-                                    print("Error loading file data: \(error.localizedDescription)")
-                                }
-                            case .failure(let error):
-                                print("Error importing file: \(error.localizedDescription)")
-                            }
-                        }
-                }
+                filePickerSection
                 
                 Section {
                     Button("Datei Speichern") {
@@ -96,6 +55,61 @@ struct DocumentPickerView: View {
                 }
             }
             .pickerStyle(MenuPickerStyle())
+        }
+    }
+    
+    private var documentInformationSection: some View {
+        Section("Dateiinformationen") {
+            TextField("Name", text: $name)
+                .focused($focusedTextField, equals: .name)
+                .onSubmit { focusedTextField = .notes }
+                .submitLabel(.next)
+            
+            TextField("Notiz", text: $notes)
+                .focused($focusedTextField, equals: .notes)
+                .onSubmit { focusedTextField = nil }
+                .submitLabel(.continue)
+        }
+    }
+    
+    private var filePickerSection: some View {
+        Section {
+            Text(fileURL?.lastPathComponent ?? "Keine Datei ausgewählt")
+                .fileImporter(isPresented: .constant(true), allowedContentTypes: [.item], allowsMultipleSelection: false) { result in
+                    handleFileSelection(result: result)
+                }
+        }
+    }
+    
+    private func handleFileSelection(result: Result<[URL], Error>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else {
+                print("Keine Datei ausgewählt")
+                return
+            }
+            print("Datei ausgewählt: \(url)")
+            fileURL = url
+            loadAttachmentData(from: url)
+        case .failure(let error):
+            print("Fehler beim Importieren der Datei: \(error.localizedDescription)")
+        }
+    }
+    
+    private func loadAttachmentData(from url: URL) {
+        do {
+            let accessGranted = url.startAccessingSecurityScopedResource()
+            defer { url.stopAccessingSecurityScopedResource() }
+            
+            guard accessGranted else {
+                print("Zugriff auf die sicherheitsgeschützte Ressource nicht möglich.")
+                return
+            }
+            
+            attachmentData = try Data(contentsOf: url)
+            print("Dateidaten erfolgreich geladen: \(attachmentData?.count ?? 0) Bytes")
+        } catch {
+            print("Fehler beim Laden der Dateidaten: \(error.localizedDescription)")
         }
     }
     
